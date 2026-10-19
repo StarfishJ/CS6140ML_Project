@@ -1,0 +1,11 @@
+# Python 3.12+ (developed on 3.14)
+wordfreq==3.1.1
+jieba==0.42.1
+pycantonese==5.0.0
+spacy==3.8.16
+ginza==5.3.0
+ja_ginza==5.3.0
+pyvi==0.1.1
+torch==2.14.1
+transformers==5.20.1
+huggingface_hub==2.0.0

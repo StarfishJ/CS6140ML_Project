@@ -1,0 +1,866 @@
+{
+  "setup": "rows_per_pair=all; fixed split from split_manifest.json (70/10/20, exact duplicates removed, Cantonese downsampled after splitting); word_lid.py labels; cjk_seg=word; counts only, no dataset text",
+  "selected_validation_threshold": 0.13,
+  "pair_results": {
+    "Arabic–English": {
+      "always_stay": {
+        "n": 71171,
+        "positive": 6457,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 71171,
+        "positive": 6457,
+        "precision": 0.0907,
+        "recall": 1.0,
+        "f1": 0.1664
+      },
+      "lid_majority_0_50": {
+        "n": 71171,
+        "positive": 6457,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 71171,
+        "positive": 6457,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.05,
+      "lid_threshold_pair_tuned": {
+        "n": 71171,
+        "positive": 6457,
+        "precision": 0.1253,
+        "recall": 0.8078,
+        "f1": 0.2169
+      },
+      "word_pair_threshold": 0.18,
+      "word_threshold_pair_tuned": {
+        "n": 71171,
+        "positive": 6457,
+        "precision": 0.3151,
+        "recall": 0.4807,
+        "f1": 0.3807
+      },
+      "switch_rate": 0.0907,
+      "split_positions": {
+        "train": 250253,
+        "val": 37579,
+        "test": 71171
+      },
+      "duration_labeled": 6457,
+      "duration_unresolved": 0
+    },
+    "Cantonese–English": {
+      "always_stay": {
+        "n": 109528,
+        "positive": 11277,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 109528,
+        "positive": 11277,
+        "precision": 0.103,
+        "recall": 1.0,
+        "f1": 0.1867
+      },
+      "lid_majority_0_50": {
+        "n": 109528,
+        "positive": 11277,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 109528,
+        "positive": 11277,
+        "precision": 0.1338,
+        "recall": 0.3412,
+        "f1": 0.1923
+      },
+      "pair_threshold": 0.1,
+      "lid_threshold_pair_tuned": {
+        "n": 109528,
+        "positive": 11277,
+        "precision": 0.1338,
+        "recall": 0.3412,
+        "f1": 0.1923
+      },
+      "word_pair_threshold": 0.18,
+      "word_threshold_pair_tuned": {
+        "n": 109528,
+        "positive": 11277,
+        "precision": 0.3372,
+        "recall": 0.3948,
+        "f1": 0.3637
+      },
+      "switch_rate": 0.103,
+      "split_positions": {
+        "train": 384352,
+        "val": 54690,
+        "test": 109528
+      },
+      "duration_labeled": 11277,
+      "duration_unresolved": 0
+    },
+    "Chinese–English": {
+      "always_stay": {
+        "n": 107987,
+        "positive": 7991,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 107987,
+        "positive": 7991,
+        "precision": 0.074,
+        "recall": 1.0,
+        "f1": 0.1378
+      },
+      "lid_majority_0_50": {
+        "n": 107987,
+        "positive": 7991,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 107987,
+        "positive": 7991,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.05,
+      "lid_threshold_pair_tuned": {
+        "n": 107987,
+        "positive": 7991,
+        "precision": 0.0929,
+        "recall": 0.8035,
+        "f1": 0.1665
+      },
+      "word_pair_threshold": 0.18,
+      "word_threshold_pair_tuned": {
+        "n": 107987,
+        "positive": 7991,
+        "precision": 0.32,
+        "recall": 0.435,
+        "f1": 0.3687
+      },
+      "switch_rate": 0.074,
+      "split_positions": {
+        "train": 373194,
+        "val": 52689,
+        "test": 107987
+      },
+      "duration_labeled": 7991,
+      "duration_unresolved": 0
+    },
+    "Filipino–English": {
+      "always_stay": {
+        "n": 90432,
+        "positive": 16475,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 90432,
+        "positive": 16475,
+        "precision": 0.1822,
+        "recall": 1.0,
+        "f1": 0.3082
+      },
+      "lid_majority_0_50": {
+        "n": 90432,
+        "positive": 16475,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 90432,
+        "positive": 16475,
+        "precision": 0.1823,
+        "recall": 1.0,
+        "f1": 0.3085
+      },
+      "pair_threshold": 0.01,
+      "lid_threshold_pair_tuned": {
+        "n": 90432,
+        "positive": 16475,
+        "precision": 0.1823,
+        "recall": 1.0,
+        "f1": 0.3085
+      },
+      "word_pair_threshold": 0.25,
+      "word_threshold_pair_tuned": {
+        "n": 90432,
+        "positive": 16475,
+        "precision": 0.3846,
+        "recall": 0.6802,
+        "f1": 0.4914
+      },
+      "switch_rate": 0.1822,
+      "split_positions": {
+        "train": 315933,
+        "val": 45007,
+        "test": 90432
+      },
+      "duration_labeled": 16380,
+      "duration_unresolved": 95
+    },
+    "French–English": {
+      "always_stay": {
+        "n": 81245,
+        "positive": 5734,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 81245,
+        "positive": 5734,
+        "precision": 0.0706,
+        "recall": 1.0,
+        "f1": 0.1318
+      },
+      "lid_majority_0_50": {
+        "n": 81245,
+        "positive": 5734,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 81245,
+        "positive": 5734,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.04,
+      "lid_threshold_pair_tuned": {
+        "n": 81245,
+        "positive": 5734,
+        "precision": 0.0897,
+        "recall": 0.8647,
+        "f1": 0.1626
+      },
+      "word_pair_threshold": 0.19,
+      "word_threshold_pair_tuned": {
+        "n": 81245,
+        "positive": 5734,
+        "precision": 0.3184,
+        "recall": 0.4411,
+        "f1": 0.3698
+      },
+      "switch_rate": 0.0706,
+      "split_positions": {
+        "train": 279113,
+        "val": 38615,
+        "test": 81245
+      },
+      "duration_labeled": 5728,
+      "duration_unresolved": 6
+    },
+    "German–English": {
+      "always_stay": {
+        "n": 64552,
+        "positive": 4847,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 64552,
+        "positive": 4847,
+        "precision": 0.0751,
+        "recall": 1.0,
+        "f1": 0.1397
+      },
+      "lid_majority_0_50": {
+        "n": 64552,
+        "positive": 4847,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 64552,
+        "positive": 4847,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.04,
+      "lid_threshold_pair_tuned": {
+        "n": 64552,
+        "positive": 4847,
+        "precision": 0.0954,
+        "recall": 0.8494,
+        "f1": 0.1715
+      },
+      "word_pair_threshold": 0.21,
+      "word_threshold_pair_tuned": {
+        "n": 64552,
+        "positive": 4847,
+        "precision": 0.3786,
+        "recall": 0.465,
+        "f1": 0.4174
+      },
+      "switch_rate": 0.0751,
+      "split_positions": {
+        "train": 216972,
+        "val": 30334,
+        "test": 64552
+      },
+      "duration_labeled": 4845,
+      "duration_unresolved": 2
+    },
+    "German–French": {
+      "always_stay": {
+        "n": 76357,
+        "positive": 5775,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 76357,
+        "positive": 5775,
+        "precision": 0.0756,
+        "recall": 1.0,
+        "f1": 0.1406
+      },
+      "lid_majority_0_50": {
+        "n": 76357,
+        "positive": 5775,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 76357,
+        "positive": 5775,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.05,
+      "lid_threshold_pair_tuned": {
+        "n": 76357,
+        "positive": 5775,
+        "precision": 0.0978,
+        "recall": 0.8151,
+        "f1": 0.1746
+      },
+      "word_pair_threshold": 0.21,
+      "word_threshold_pair_tuned": {
+        "n": 76357,
+        "positive": 5775,
+        "precision": 0.398,
+        "recall": 0.4386,
+        "f1": 0.4173
+      },
+      "switch_rate": 0.0756,
+      "split_positions": {
+        "train": 263621,
+        "val": 37920,
+        "test": 76357
+      },
+      "duration_labeled": 5765,
+      "duration_unresolved": 10
+    },
+    "Hindi–English": {
+      "always_stay": {
+        "n": 89414,
+        "positive": 23092,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 89414,
+        "positive": 23092,
+        "precision": 0.2583,
+        "recall": 1.0,
+        "f1": 0.4105
+      },
+      "lid_majority_0_50": {
+        "n": 89414,
+        "positive": 23092,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 89414,
+        "positive": 23092,
+        "precision": 0.2583,
+        "recall": 1.0,
+        "f1": 0.4105
+      },
+      "pair_threshold": 0.01,
+      "lid_threshold_pair_tuned": {
+        "n": 89414,
+        "positive": 23092,
+        "precision": 0.2583,
+        "recall": 1.0,
+        "f1": 0.4105
+      },
+      "word_pair_threshold": 0.31,
+      "word_threshold_pair_tuned": {
+        "n": 89414,
+        "positive": 23092,
+        "precision": 0.5382,
+        "recall": 0.7418,
+        "f1": 0.6238
+      },
+      "switch_rate": 0.2583,
+      "split_positions": {
+        "train": 310965,
+        "val": 43779,
+        "test": 89414
+      },
+      "duration_labeled": 23092,
+      "duration_unresolved": 0
+    },
+    "Italian–English": {
+      "always_stay": {
+        "n": 80254,
+        "positive": 5714,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 80254,
+        "positive": 5714,
+        "precision": 0.0712,
+        "recall": 1.0,
+        "f1": 0.1329
+      },
+      "lid_majority_0_50": {
+        "n": 80254,
+        "positive": 5714,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 80254,
+        "positive": 5714,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.04,
+      "lid_threshold_pair_tuned": {
+        "n": 80254,
+        "positive": 5714,
+        "precision": 0.0898,
+        "recall": 0.8372,
+        "f1": 0.1622
+      },
+      "word_pair_threshold": 0.17,
+      "word_threshold_pair_tuned": {
+        "n": 80254,
+        "positive": 5714,
+        "precision": 0.2862,
+        "recall": 0.4414,
+        "f1": 0.3472
+      },
+      "switch_rate": 0.0712,
+      "split_positions": {
+        "train": 283126,
+        "val": 41700,
+        "test": 80254
+      },
+      "duration_labeled": 5706,
+      "duration_unresolved": 8
+    },
+    "Japanese–English": {
+      "always_stay": {
+        "n": 72723,
+        "positive": 7706,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 72723,
+        "positive": 7706,
+        "precision": 0.106,
+        "recall": 1.0,
+        "f1": 0.1916
+      },
+      "lid_majority_0_50": {
+        "n": 72723,
+        "positive": 7706,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 72723,
+        "positive": 7706,
+        "precision": 0.1723,
+        "recall": 0.7882,
+        "f1": 0.2827
+      },
+      "pair_threshold": 0.05,
+      "lid_threshold_pair_tuned": {
+        "n": 72723,
+        "positive": 7706,
+        "precision": 0.1723,
+        "recall": 0.7882,
+        "f1": 0.2827
+      },
+      "word_pair_threshold": 0.25,
+      "word_threshold_pair_tuned": {
+        "n": 72723,
+        "positive": 7706,
+        "precision": 0.675,
+        "recall": 0.4282,
+        "f1": 0.524
+      },
+      "switch_rate": 0.106,
+      "split_positions": {
+        "train": 259750,
+        "val": 36273,
+        "test": 72723
+      },
+      "duration_labeled": 7706,
+      "duration_unresolved": 0
+    },
+    "Korean–English": {
+      "always_stay": {
+        "n": 71198,
+        "positive": 7645,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 71198,
+        "positive": 7645,
+        "precision": 0.1074,
+        "recall": 1.0,
+        "f1": 0.1939
+      },
+      "lid_majority_0_50": {
+        "n": 71198,
+        "positive": 7645,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 71198,
+        "positive": 7645,
+        "precision": 0.1489,
+        "recall": 0.7829,
+        "f1": 0.2502
+      },
+      "pair_threshold": 0.05,
+      "lid_threshold_pair_tuned": {
+        "n": 71198,
+        "positive": 7645,
+        "precision": 0.1489,
+        "recall": 0.7829,
+        "f1": 0.2502
+      },
+      "word_pair_threshold": 0.28,
+      "word_threshold_pair_tuned": {
+        "n": 71198,
+        "positive": 7645,
+        "precision": 0.8306,
+        "recall": 0.5683,
+        "f1": 0.6749
+      },
+      "switch_rate": 0.1074,
+      "split_positions": {
+        "train": 242155,
+        "val": 34001,
+        "test": 71198
+      },
+      "duration_labeled": 7645,
+      "duration_unresolved": 0
+    },
+    "Malay–English": {
+      "always_stay": {
+        "n": 83526,
+        "positive": 9909,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 83526,
+        "positive": 9909,
+        "precision": 0.1186,
+        "recall": 1.0,
+        "f1": 0.2121
+      },
+      "lid_majority_0_50": {
+        "n": 83526,
+        "positive": 9909,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 83526,
+        "positive": 9909,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.01,
+      "lid_threshold_pair_tuned": {
+        "n": 83526,
+        "positive": 9909,
+        "precision": 0.1186,
+        "recall": 1.0,
+        "f1": 0.2121
+      },
+      "word_pair_threshold": 0.16,
+      "word_threshold_pair_tuned": {
+        "n": 83526,
+        "positive": 9909,
+        "precision": 0.2744,
+        "recall": 0.5272,
+        "f1": 0.3609
+      },
+      "switch_rate": 0.1186,
+      "split_positions": {
+        "train": 289948,
+        "val": 41597,
+        "test": 83526
+      },
+      "duration_labeled": 9873,
+      "duration_unresolved": 36
+    },
+    "Russian–English": {
+      "always_stay": {
+        "n": 68795,
+        "positive": 6410,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 68795,
+        "positive": 6410,
+        "precision": 0.0932,
+        "recall": 1.0,
+        "f1": 0.1705
+      },
+      "lid_majority_0_50": {
+        "n": 68795,
+        "positive": 6410,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 68795,
+        "positive": 6410,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.06,
+      "lid_threshold_pair_tuned": {
+        "n": 68795,
+        "positive": 6410,
+        "precision": 0.1144,
+        "recall": 0.7794,
+        "f1": 0.1995
+      },
+      "word_pair_threshold": 0.15,
+      "word_threshold_pair_tuned": {
+        "n": 68795,
+        "positive": 6410,
+        "precision": 0.2755,
+        "recall": 0.4732,
+        "f1": 0.3482
+      },
+      "switch_rate": 0.0932,
+      "split_positions": {
+        "train": 247837,
+        "val": 35494,
+        "test": 68795
+      },
+      "duration_labeled": 6410,
+      "duration_unresolved": 0
+    },
+    "Spanish–English": {
+      "always_stay": {
+        "n": 83345,
+        "positive": 6421,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 83345,
+        "positive": 6421,
+        "precision": 0.077,
+        "recall": 1.0,
+        "f1": 0.1431
+      },
+      "lid_majority_0_50": {
+        "n": 83345,
+        "positive": 6421,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 83345,
+        "positive": 6421,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.05,
+      "lid_threshold_pair_tuned": {
+        "n": 83345,
+        "positive": 6421,
+        "precision": 0.0902,
+        "recall": 0.8042,
+        "f1": 0.1622
+      },
+      "word_pair_threshold": 0.15,
+      "word_threshold_pair_tuned": {
+        "n": 83345,
+        "positive": 6421,
+        "precision": 0.2815,
+        "recall": 0.4748,
+        "f1": 0.3535
+      },
+      "switch_rate": 0.077,
+      "split_positions": {
+        "train": 296624,
+        "val": 41106,
+        "test": 83345
+      },
+      "duration_labeled": 6413,
+      "duration_unresolved": 8
+    },
+    "Vietnamese–English": {
+      "always_stay": {
+        "n": 91679,
+        "positive": 8441,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "always_switch": {
+        "n": 91679,
+        "positive": 8441,
+        "precision": 0.0921,
+        "recall": 1.0,
+        "f1": 0.1686
+      },
+      "lid_majority_0_50": {
+        "n": 91679,
+        "positive": 8441,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "lid_threshold_val_tuned": {
+        "n": 91679,
+        "positive": 8441,
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0
+      },
+      "pair_threshold": 0.08,
+      "lid_threshold_pair_tuned": {
+        "n": 91679,
+        "positive": 8441,
+        "precision": 0.099,
+        "recall": 0.74,
+        "f1": 0.1747
+      },
+      "word_pair_threshold": 0.18,
+      "word_threshold_pair_tuned": {
+        "n": 91679,
+        "positive": 8441,
+        "precision": 0.2816,
+        "recall": 0.4579,
+        "f1": 0.3487
+      },
+      "switch_rate": 0.0921,
+      "split_positions": {
+        "train": 323112,
+        "val": 47965,
+        "test": 91679
+      },
+      "duration_labeled": 8427,
+      "duration_unresolved": 14
+    }
+  },
+  "tuned_f1_mean": 0.0963,
+  "universality_sd_tuned_f1": 0.1424,
+  "universality_sd_tuned_f1_original4": 0.1746,
+  "pair_tuned_f1_mean": 0.2165,
+  "universality_sd_pair_tuned_f1": 0.068,
+  "universality_sd_pair_tuned_f1_original4": 0.0835,
+  "word_f1_mean": 0.426,
+  "universality_sd_word_f1": 0.1017,
+  "pair_tuned_by_lid_method": {
+    "script": {
+      "pairs": [
+        "Arabic–English",
+        "Cantonese–English",
+        "Chinese–English",
+        "Japanese–English",
+        "Korean–English",
+        "Russian–English"
+      ],
+      "mean_f1": 0.218,
+      "sd_f1": 0.0385
+    },
+    "hindi": {
+      "pairs": [
+        "Hindi–English"
+      ],
+      "mean_f1": 0.4105,
+      "sd_f1": 0.0
+    },
+    "lexicon": {
+      "pairs": [
+        "Filipino–English",
+        "French–English",
+        "German–English",
+        "German–French",
+        "Italian–English",
+        "Malay–English",
+        "Spanish–English",
+        "Vietnamese–English"
+      ],
+      "mean_f1": 0.191,
+      "sd_f1": 0.0469
+    }
+  },
+  "limitations": [
+    "F1 measures weak labels, not gold LIDs: Unicode script (non-Latin), muril-hinglish-lid (romanized Hindi), wordfreq comparison (Latin-script pairs; ambiguous words resolved from both sides)",
+    "Labels may read the whole sentence; the current-LID input feature uses only the prefix (left-context rule for Latin-script pairs, the model on each prefix for romanized Hindi)",
+    "Chinese/Cantonese words come from jieba/PyCantonese; Japanese units are GiNZA bunsetsu (content word + particles/auxiliaries, comparable to Korean eojeol); Vietnamese syllables merged by pyvi",
+    "Only exact duplicates removed; near-duplicate utterances may still cross splits",
+    "Thresholds selected on validation splits only (pooled, or per pair)"
+  ]
+}

@@ -1,0 +1,223 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{14}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Aguilar et~al\mbox{.}(2020)]%
+        {aguilar2020lince}
+\bibfield{author}{\bibinfo{person}{Gustavo Aguilar}, \bibinfo{person}{Sudipta
+  Kar}, {and} \bibinfo{person}{Thamar Solorio}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{{LinCE}: A Centralized Benchmark for Linguistic
+  Code-switching Evaluation}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  Twelfth Language Resources and Evaluation Conference (LREC)}}.
+  \bibinfo{pages}{1803--1813}.
+\newblock
+
+
+\bibitem[Conneau et~al\mbox{.}(2020)]%
+        {conneau2020xlmr}
+\bibfield{author}{\bibinfo{person}{Alexis Conneau}, \bibinfo{person}{Kartikay
+  Khandelwal}, \bibinfo{person}{Naman Goyal}, \bibinfo{person}{Vishrav
+  Chaudhary}, \bibinfo{person}{Guillaume Wenzek}, \bibinfo{person}{Francisco
+  Guzm{\'a}n}, \bibinfo{person}{Edouard Grave}, \bibinfo{person}{Myle Ott},
+  \bibinfo{person}{Luke Zettlemoyer}, {and} \bibinfo{person}{Veselin
+  Stoyanov}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Unsupervised Cross-lingual Representation Learning
+  at Scale}. In \bibinfo{booktitle}{\emph{Proceedings of the 58th Annual
+  Meeting of the Association for Computational Linguistics (ACL)}}.
+  \bibinfo{pages}{8440--8451}.
+\newblock
+\href{https://doi.org/10.18653/v1/2020.acl-main.747}{doi:\nolinkurl{10.18653/v1/2020.acl-main.747}}
+
+
+\bibitem[Devlin et~al\mbox{.}(2019)]%
+        {devlin2019bert}
+\bibfield{author}{\bibinfo{person}{Jacob Devlin}, \bibinfo{person}{Ming-Wei
+  Chang}, \bibinfo{person}{Kenton Lee}, {and} \bibinfo{person}{Kristina
+  Toutanova}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{BERT}: Pre-training of Deep Bidirectional
+  Transformers for Language Understanding}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2019 Conference of the North
+  American Chapter of the Association for Computational Linguistics
+  (NAACL-HLT)}}. \bibinfo{pages}{4171--4186}.
+\newblock
+\href{https://doi.org/10.18653/v1/N19-1423}{doi:\nolinkurl{10.18653/v1/N19-1423}}
+
+
+\bibitem[Khanuja et~al\mbox{.}(2020)]%
+        {khanuja2020gluecos}
+\bibfield{author}{\bibinfo{person}{Simran Khanuja}, \bibinfo{person}{Sandipan
+  Dandapat}, \bibinfo{person}{Anirudh Srinivasan}, \bibinfo{person}{Sunayana
+  Sitaram}, {and} \bibinfo{person}{Monojit Choudhury}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{{GLUECoS}: An Evaluation Benchmark for
+  Code-Switched {NLP}}. In \bibinfo{booktitle}{\emph{Proceedings of the 58th
+  Annual Meeting of the Association for Computational Linguistics (ACL)}}.
+  \bibinfo{pages}{3575--3585}.
+\newblock
+\href{https://doi.org/10.18653/v1/2020.acl-main.329}{doi:\nolinkurl{10.18653/v1/2020.acl-main.329}}
+
+
+\bibitem[Liu et~al\mbox{.}(2019)]%
+        {liu2019mtdnn}
+\bibfield{author}{\bibinfo{person}{Xiaodong Liu}, \bibinfo{person}{Pengcheng
+  He}, \bibinfo{person}{Weizhu Chen}, {and} \bibinfo{person}{Jianfeng Gao}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Multi-Task Deep Neural Networks for Natural
+  Language Understanding}. In \bibinfo{booktitle}{\emph{Proceedings of the 57th
+  Annual Meeting of the Association for Computational Linguistics (ACL)}}.
+  \bibinfo{pages}{4487--4496}.
+\newblock
+\href{https://doi.org/10.18653/v1/P19-1441}{doi:\nolinkurl{10.18653/v1/P19-1441}}
+
+
+\bibitem[Molina et~al\mbox{.}(2016)]%
+        {molina2016overview}
+\bibfield{author}{\bibinfo{person}{Giovanni Molina}, \bibinfo{person}{Fahad
+  AlGhamdi}, \bibinfo{person}{Mahmoud Ghoneim}, \bibinfo{person}{Abdelati
+  Hawwari}, \bibinfo{person}{Nicolas Rey-Villamizar}, \bibinfo{person}{Mona
+  Diab}, {and} \bibinfo{person}{Thamar Solorio}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Overview for the Second Shared Task on Language
+  Identification in Code-Switched Data}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the Second Workshop on Computational
+  Approaches to Code Switching}}. \bibinfo{pages}{40--49}.
+\newblock
+\href{https://doi.org/10.18653/v1/W16-5805}{doi:\nolinkurl{10.18653/v1/W16-5805}}
+
+
+\bibitem[Muller et~al\mbox{.}(2021)]%
+        {muller2021unseen}
+\bibfield{author}{\bibinfo{person}{Benjamin Muller}, \bibinfo{person}{Antonios
+  Anastasopoulos}, \bibinfo{person}{Beno{\^i}t Sagot}, {and}
+  \bibinfo{person}{Djam{\'e} Seddah}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{When Being Unseen from m{BERT} is just the
+  Beginning: Handling New Languages With Multilingual Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2021 Conference of the North
+  American Chapter of the Association for Computational Linguistics
+  (NAACL-HLT)}}. \bibinfo{pages}{448--462}.
+\newblock
+\href{https://doi.org/10.18653/v1/2021.naacl-main.38}{doi:\nolinkurl{10.18653/v1/2021.naacl-main.38}}
+
+
+\bibitem[Ostapenko et~al\mbox{.}(2022)]%
+        {ostapenko2022speaker}
+\bibfield{author}{\bibinfo{person}{Alissa Ostapenko}, \bibinfo{person}{Shuly
+  Wintner}, \bibinfo{person}{Melinda Fricke}, {and} \bibinfo{person}{Yulia
+  Tsvetkov}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Speaker Information Can Guide Models to Better
+  Inductive Biases: A Case Study On Predicting Code-Switching}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 60th Annual Meeting of the
+  Association for Computational Linguistics (ACL)}}.
+  \bibinfo{pages}{3853--3867}.
+\newblock
+\href{https://doi.org/10.18653/v1/2022.acl-long.267}{doi:\nolinkurl{10.18653/v1/2022.acl-long.267}}
+
+
+\bibitem[Pires et~al\mbox{.}(2019)]%
+        {pires2019multilingual}
+\bibfield{author}{\bibinfo{person}{Telmo Pires}, \bibinfo{person}{Eva
+  Schlinger}, {and} \bibinfo{person}{Dan Garrette}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{How Multilingual is Multilingual {BERT}?}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 57th Annual Meeting of the
+  Association for Computational Linguistics (ACL)}}.
+  \bibinfo{pages}{4996--5001}.
+\newblock
+\href{https://doi.org/10.18653/v1/P19-1493}{doi:\nolinkurl{10.18653/v1/P19-1493}}
+
+
+\bibitem[Solorio et~al\mbox{.}(2014)]%
+        {solorio2014overview}
+\bibfield{author}{\bibinfo{person}{Thamar Solorio}, \bibinfo{person}{Elizabeth
+  Blair}, \bibinfo{person}{Suraj Maharjan}, \bibinfo{person}{Steven Bethard},
+  \bibinfo{person}{Mona Diab}, \bibinfo{person}{Mahmoud Ghoneim},
+  \bibinfo{person}{Abdelati Hawwari}, \bibinfo{person}{Fahad AlGhamdi},
+  \bibinfo{person}{Julia Hirschberg}, \bibinfo{person}{Alison Chang}, {and}
+  \bibinfo{person}{Pascale Fung}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Overview for the First Shared Task on Language
+  Identification in Code-Switched Data}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the First Workshop on Computational
+  Approaches to Code Switching}}. \bibinfo{pages}{62--72}.
+\newblock
+\href{https://doi.org/10.3115/v1/W14-3907}{doi:\nolinkurl{10.3115/v1/W14-3907}}
+
+
+\bibitem[Solorio and Liu(2008)]%
+        {solorio2008learning}
+\bibfield{author}{\bibinfo{person}{Thamar Solorio} {and} \bibinfo{person}{Yang
+  Liu}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Learning to Predict Code-Switching Points}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2008 Conference on Empirical
+  Methods in Natural Language Processing (EMNLP)}}. \bibinfo{pages}{973--981}.
+\newblock
+
+
+\bibitem[Speer(2022)]%
+        {speer2022wordfreq}
+\bibfield{author}{\bibinfo{person}{Robyn Speer}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{rspeer/wordfreq: v3.0}}.
+\newblock
+\href{https://doi.org/10.5281/zenodo.7199437}{doi:\nolinkurl{10.5281/zenodo.7199437}}
+
+
+\bibitem[Winata et~al\mbox{.}(2019)]%
+        {winata2019synthetic}
+\bibfield{author}{\bibinfo{person}{Genta~Indra Winata}, \bibinfo{person}{Andrea
+  Madotto}, \bibinfo{person}{Chien-Sheng Wu}, {and} \bibinfo{person}{Pascale
+  Fung}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Code-Switched Language Models Using Neural Based
+  Synthetic Data from Parallel Sentences}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 23rd Conference on Computational
+  Natural Language Learning (CoNLL)}}. \bibinfo{pages}{271--280}.
+\newblock
+\href{https://doi.org/10.18653/v1/K19-1026}{doi:\nolinkurl{10.18653/v1/K19-1026}}
+
+
+\bibitem[Xie et~al\mbox{.}(2025)]%
+        {xie2025switchlingua}
+\bibfield{author}{\bibinfo{person}{Peng Xie}, \bibinfo{person}{Xingyuan Liu},
+  \bibinfo{person}{Tsz~Wai Chan}, {et~al\mbox{.}}}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{SwitchLingua}: The First Large-Scale Multilingual
+  and Multi-Ethnic Code-Switching Dataset}.
+\newblock
+\showeprint[arxiv]{2506.00087}
+
+
+\end{thebibliography}

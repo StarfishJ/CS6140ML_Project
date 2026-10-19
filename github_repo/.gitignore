@@ -1,0 +1,7 @@
+# SwitchLingua is licensed: never commit the CSVs or any text taken from them
+data/
+*.csv
+__pycache__/
+*.pyc
+.venv/
+.DS_Store

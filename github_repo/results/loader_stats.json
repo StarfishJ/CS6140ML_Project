@@ -1,0 +1,530 @@
+{
+  "setup": "rows_per_pair=all; split from split_manifest.json (70/10/20, deduplicated); window=32 words; cjk_seg=word",
+  "pairs": {
+    "Arabic–English": {
+      "test": {
+        "positions": 71171,
+        "switches": 6457,
+        "switch_rate": 0.0907,
+        "duration_bins": [
+          2690,
+          1494,
+          2273
+        ],
+        "duration_unresolved": 0
+      },
+      "train": {
+        "positions": 250253,
+        "switches": 22884,
+        "switch_rate": 0.0914,
+        "duration_bins": [
+          9347,
+          5602,
+          7934
+        ],
+        "duration_unresolved": 1
+      },
+      "val": {
+        "positions": 37579,
+        "switches": 3336,
+        "switch_rate": 0.0888,
+        "duration_bins": [
+          1369,
+          799,
+          1168
+        ],
+        "duration_unresolved": 0
+      }
+    },
+    "Hindi–English": {
+      "test": {
+        "positions": 89414,
+        "switches": 23092,
+        "switch_rate": 0.2583,
+        "duration_bins": [
+          15360,
+          4934,
+          2798
+        ],
+        "duration_unresolved": 0
+      },
+      "train": {
+        "positions": 310965,
+        "switches": 81173,
+        "switch_rate": 0.261,
+        "duration_bins": [
+          53938,
+          17582,
+          9651
+        ],
+        "duration_unresolved": 2
+      },
+      "val": {
+        "positions": 43779,
+        "switches": 11317,
+        "switch_rate": 0.2585,
+        "duration_bins": [
+          7581,
+          2403,
+          1333
+        ],
+        "duration_unresolved": 0
+      }
+    },
+    "Korean–English": {
+      "test": {
+        "positions": 71198,
+        "switches": 7645,
+        "switch_rate": 0.1074,
+        "duration_bins": [
+          3006,
+          1702,
+          2937
+        ],
+        "duration_unresolved": 0
+      },
+      "train": {
+        "positions": 242155,
+        "switches": 25609,
+        "switch_rate": 0.1058,
+        "duration_bins": [
+          10221,
+          5549,
+          9838
+        ],
+        "duration_unresolved": 1
+      },
+      "val": {
+        "positions": 34001,
+        "switches": 3621,
+        "switch_rate": 0.1065,
+        "duration_bins": [
+          1496,
+          777,
+          1348
+        ],
+        "duration_unresolved": 0
+      }
+    },
+    "Russian–English": {
+      "test": {
+        "positions": 68795,
+        "switches": 6410,
+        "switch_rate": 0.0932,
+        "duration_bins": [
+          2613,
+          1693,
+          2104
+        ],
+        "duration_unresolved": 0
+      },
+      "train": {
+        "positions": 247837,
+        "switches": 23069,
+        "switch_rate": 0.0931,
+        "duration_bins": [
+          9136,
+          6062,
+          7868
+        ],
+        "duration_unresolved": 3
+      },
+      "val": {
+        "positions": 35494,
+        "switches": 3285,
+        "switch_rate": 0.0926,
+        "duration_bins": [
+          1341,
+          873,
+          1070
+        ],
+        "duration_unresolved": 1
+      }
+    },
+    "Chinese–English": {
+      "test": {
+        "positions": 107987,
+        "switches": 7991,
+        "switch_rate": 0.074,
+        "duration_bins": [
+          2737,
+          1708,
+          3546
+        ],
+        "duration_unresolved": 0
+      },
+      "train": {
+        "positions": 373194,
+        "switches": 28269,
+        "switch_rate": 0.0757,
+        "duration_bins": [
+          9999,
+          6076,
+          12189
+        ],
+        "duration_unresolved": 5
+      },
+      "val": {
+        "positions": 52689,
+        "switches": 3903,
+        "switch_rate": 0.0741,
+        "duration_bins": [
+          1317,
+          834,
+          1750
+        ],
+        "duration_unresolved": 2
+      }
+    },
+    "Cantonese–English": {
+      "test": {
+        "positions": 109528,
+        "switches": 11277,
+        "switch_rate": 0.103,
+        "duration_bins": [
+          5123,
+          3325,
+          2829
+        ],
+        "duration_unresolved": 0
+      },
+      "train": {
+        "positions": 384352,
+        "switches": 39679,
+        "switch_rate": 0.1032,
+        "duration_bins": [
+          18383,
+          11683,
+          9607
+        ],
+        "duration_unresolved": 6
+      },
+      "val": {
+        "positions": 54690,
+        "switches": 5771,
+        "switch_rate": 0.1055,
+        "duration_bins": [
+          2702,
+          1739,
+          1330
+        ],
+        "duration_unresolved": 0
+      }
+    },
+    "Japanese–English": {
+      "test": {
+        "positions": 72723,
+        "switches": 7706,
+        "switch_rate": 0.106,
+        "duration_bins": [
+          2954,
+          1652,
+          3100
+        ],
+        "duration_unresolved": 0
+      },
+      "train": {
+        "positions": 259750,
+        "switches": 27311,
+        "switch_rate": 0.1051,
+        "duration_bins": [
+          10141,
+          5814,
+          11355
+        ],
+        "duration_unresolved": 1
+      },
+      "val": {
+        "positions": 36273,
+        "switches": 3927,
+        "switch_rate": 0.1083,
+        "duration_bins": [
+          1472,
+          853,
+          1602
+        ],
+        "duration_unresolved": 0
+      }
+    },
+    "Spanish–English": {
+      "test": {
+        "positions": 83345,
+        "switches": 6421,
+        "switch_rate": 0.077,
+        "duration_bins": [
+          2252,
+          1607,
+          2554
+        ],
+        "duration_unresolved": 8
+      },
+      "train": {
+        "positions": 296624,
+        "switches": 22672,
+        "switch_rate": 0.0764,
+        "duration_bins": [
+          7765,
+          5950,
+          8923
+        ],
+        "duration_unresolved": 34
+      },
+      "val": {
+        "positions": 41106,
+        "switches": 3214,
+        "switch_rate": 0.0782,
+        "duration_bins": [
+          1131,
+          852,
+          1227
+        ],
+        "duration_unresolved": 4
+      }
+    },
+    "French–English": {
+      "test": {
+        "positions": 81245,
+        "switches": 5734,
+        "switch_rate": 0.0706,
+        "duration_bins": [
+          1938,
+          1369,
+          2421
+        ],
+        "duration_unresolved": 6
+      },
+      "train": {
+        "positions": 279113,
+        "switches": 19934,
+        "switch_rate": 0.0714,
+        "duration_bins": [
+          6805,
+          4639,
+          8462
+        ],
+        "duration_unresolved": 28
+      },
+      "val": {
+        "positions": 38615,
+        "switches": 2814,
+        "switch_rate": 0.0729,
+        "duration_bins": [
+          969,
+          696,
+          1145
+        ],
+        "duration_unresolved": 4
+      }
+    },
+    "German–English": {
+      "test": {
+        "positions": 64552,
+        "switches": 4847,
+        "switch_rate": 0.0751,
+        "duration_bins": [
+          1712,
+          1134,
+          1999
+        ],
+        "duration_unresolved": 2
+      },
+      "train": {
+        "positions": 216972,
+        "switches": 16760,
+        "switch_rate": 0.0772,
+        "duration_bins": [
+          6354,
+          3774,
+          6611
+        ],
+        "duration_unresolved": 21
+      },
+      "val": {
+        "positions": 30334,
+        "switches": 2311,
+        "switch_rate": 0.0762,
+        "duration_bins": [
+          829,
+          514,
+          960
+        ],
+        "duration_unresolved": 8
+      }
+    },
+    "Italian–English": {
+      "test": {
+        "positions": 80254,
+        "switches": 5714,
+        "switch_rate": 0.0712,
+        "duration_bins": [
+          1975,
+          1328,
+          2403
+        ],
+        "duration_unresolved": 8
+      },
+      "train": {
+        "positions": 283126,
+        "switches": 19980,
+        "switch_rate": 0.0706,
+        "duration_bins": [
+          6660,
+          4741,
+          8552
+        ],
+        "duration_unresolved": 27
+      },
+      "val": {
+        "positions": 41700,
+        "switches": 2904,
+        "switch_rate": 0.0696,
+        "duration_bins": [
+          941,
+          696,
+          1258
+        ],
+        "duration_unresolved": 9
+      }
+    },
+    "Malay–English": {
+      "test": {
+        "positions": 83526,
+        "switches": 9909,
+        "switch_rate": 0.1186,
+        "duration_bins": [
+          4799,
+          2414,
+          2660
+        ],
+        "duration_unresolved": 36
+      },
+      "train": {
+        "positions": 289948,
+        "switches": 34310,
+        "switch_rate": 0.1183,
+        "duration_bins": [
+          16059,
+          8863,
+          9252
+        ],
+        "duration_unresolved": 136
+      },
+      "val": {
+        "positions": 41597,
+        "switches": 4989,
+        "switch_rate": 0.1199,
+        "duration_bins": [
+          2362,
+          1314,
+          1296
+        ],
+        "duration_unresolved": 17
+      }
+    },
+    "Filipino–English": {
+      "test": {
+        "positions": 90432,
+        "switches": 16475,
+        "switch_rate": 0.1822,
+        "duration_bins": [
+          9192,
+          4280,
+          2908
+        ],
+        "duration_unresolved": 95
+      },
+      "train": {
+        "positions": 315933,
+        "switches": 56599,
+        "switch_rate": 0.1791,
+        "duration_bins": [
+          31118,
+          14829,
+          10263
+        ],
+        "duration_unresolved": 389
+      },
+      "val": {
+        "positions": 45007,
+        "switches": 8100,
+        "switch_rate": 0.18,
+        "duration_bins": [
+          4463,
+          2125,
+          1454
+        ],
+        "duration_unresolved": 58
+      }
+    },
+    "Vietnamese–English": {
+      "test": {
+        "positions": 91679,
+        "switches": 8441,
+        "switch_rate": 0.0921,
+        "duration_bins": [
+          3662,
+          1980,
+          2785
+        ],
+        "duration_unresolved": 14
+      },
+      "train": {
+        "positions": 323112,
+        "switches": 30199,
+        "switch_rate": 0.0935,
+        "duration_bins": [
+          13126,
+          7104,
+          9921
+        ],
+        "duration_unresolved": 48
+      },
+      "val": {
+        "positions": 47965,
+        "switches": 4336,
+        "switch_rate": 0.0904,
+        "duration_bins": [
+          1804,
+          1066,
+          1460
+        ],
+        "duration_unresolved": 6
+      }
+    },
+    "German–French": {
+      "test": {
+        "positions": 76357,
+        "switches": 5775,
+        "switch_rate": 0.0756,
+        "duration_bins": [
+          1774,
+          1540,
+          2451
+        ],
+        "duration_unresolved": 10
+      },
+      "train": {
+        "positions": 263621,
+        "switches": 20357,
+        "switch_rate": 0.0772,
+        "duration_bins": [
+          6565,
+          5360,
+          8400
+        ],
+        "duration_unresolved": 32
+      },
+      "val": {
+        "positions": 37920,
+        "switches": 2774,
+        "switch_rate": 0.0732,
+        "duration_bins": [
+          931,
+          656,
+          1182
+        ],
+        "duration_unresolved": 5
+      }
+    }
+  }
+}
