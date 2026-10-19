@@ -136,64 +136,76 @@ different pairs? We measure it with the same pipeline and metric on every pair, 
 (XLM-R or mBERT) with a causal attention mask and two heads, one for $y_{sw}$ and one for $y_{dur}$.
 
 \section{Background and Related Work}
-\textbf{Code-switch prediction.} Solorio and Liu~\cite{solorio2008learning} were the first to treat predicting
-Spanish--English code-switch points as a learning task. They trained Naive Bayes and VFI classifiers on language-ID,
-part-of-speech and lexical features of the one or two words before each boundary, in a 40-minute conversation of
-about 8k words. Naive Bayes reached only 0.28 F1, and the study covered one small corpus and one pair.
-Ostapenko et al.~\cite{ostapenko2022speaker} predicted whether the next word switches language in English--Spanish
-dialogues of the Bangor Miami corpus. They gave XLM-R only the utterance prefix and prior turns, and prepended prompts
-describing each speaker's age, origin and language preferences. The prompts raised test accuracy from 72.0\% to
-79.7\%, but the study covers one pair and a small dataset, and does not model switch duration.
-Winata et al.~\cite{winata2019synthetic} addressed the scarcity of English--Mandarin code-switched data for language
-modeling. A pointer-generator network learned to copy words from machine-translated parallel sentences and to decide
-when to switch, generating 270K synthetic sentences. Pre-training on them lowered SEAME test perplexity from 65.71 to
-59.74, but perplexity at switch points stayed very high, on a single pair.
+\textbf{Code-switch prediction.} Solorio and Liu~\cite{solorio2008learning} addressed predicting where a bilingual
+speaker will switch between Spanish and English, which no earlier work had automated. They trained Naive Bayes and
+VFI classifiers on language-ID, part-of-speech and lexical features of the one or two words before each candidate
+point, in a 40-minute conversation of about 8k words. Although the switches it generated were rated nearly as natural
+as human ones, Naive Bayes reached only 0.28 F1, on one small corpus and one pair.
 
-\textbf{Language identification in code-switched text.} Solorio et al.~\cite{solorio2014overview} ran the first shared
-task on word-level language identification in code-switched social-media text, for Spanish--English, Nepali--English,
-Mandarin--English and Modern Standard Arabic--dialectal Arabic. Seven teams submitted systems ranging from rule-based
-character n-gram methods to SVMs and CRFs. The best F-measure was 97.7\% for Nepali--English but only 41.7\% on one
-Arabic test set, so closely related varieties were much harder.
-Molina et al.~\cite{molina2016overview} organized the second edition, for Spanish--English and Modern Standard
-Arabic--Egyptian Arabic tweets. Nine teams took part, mostly with CRF sequence labelers, and two entries used CNN or
-LSTM networks. The best token-level F-measure was 97.3\% for Spanish--English but 87.6\% for the Arabic pair: closely
-related languages remained harder.
-Aguilar et al.~\cite{aguilar2020lince} built LinCE, a code-switching benchmark of ten corpora over four pairs
-(including Hindi--English and Spanish--English) and four tasks: language ID, POS tagging, NER and sentiment. They
-re-split the corpora and reported BiLSTM, ELMo and multilingual BERT baselines. mBERT was best on every task, with
-language-ID accuracy up to 98.5\%, but only 84.1\% for the Arabic pair, and all tasks label complete sentences.
-Khanuja et al.~\cite{khanuja2020gluecos} proposed GLUECoS, a code-switching benchmark for English--Hindi and
-English--Spanish with six tasks, from language ID to a new NLI task. They compared cross-lingual embeddings with
-mBERT, and with mBERT given further masked-LM training on synthetic code-switched text. Modified mBERT was best on most
-tasks, yet NLI reached only 63.1\%, little above chance, and only two pairs are covered.
+Ostapenko et al.~\cite{ostapenko2022speaker} addressed predicting, before it happens, whether the next word in an
+English--Spanish dialogue switches language. They fine-tuned XLM-R on the utterance prefix and previous turns of the
+Bangor Miami corpus, with prompts describing each speaker's age, origin and language preferences. Although the
+prompts raised test accuracy from 72.0\% to 79.7\%, the study covers one pair and a small dataset and does not predict
+how long a switch lasts.
 
-\textbf{Multilingual encoders.} Devlin et al.~\cite{devlin2019bert} addressed pre-training deep language
-representations that transfer to many tasks. They pre-trained BERT, a Transformer encoder, with masked language
-modeling and next-sentence prediction, then fine-tuned it with one extra output layer per task. It set new results on
-eleven tasks (GLUE 80.5), but every token attends to both left and right context, so prefix-only prediction needs a
-causal mask.
-Pires et al.~\cite{pires2019multilingual} examined how well multilingual BERT transfers across languages. They
-fine-tuned it for NER and POS tagging in one language, evaluated zero-shot on others, and tested POS tagging on
-code-switched Hindi--English in Devanagari and in romanized form. Transfer was best between typologically similar
-languages, and accuracy fell from 86.6\% to 50.4\% when the Hindi was romanized, which motivates our separate
-romanized-Hindi language ID.
-Conneau et al.~\cite{conneau2020xlmr} studied cross-lingual representation learning at scale. They trained XLM-R, a
-masked language model, on 2.5\,TB of filtered CommonCrawl text in 100 languages, including romanized Hindi. It beat
-mBERT by 14.6 points of average XNLI accuracy, most on low-resource languages, though adding languages dilutes
-per-language capacity and, like BERT, it is bidirectional.
-Muller et al.~\cite{muller2021unseen} studied how mBERT handles 15 languages absent from its pre-training. They
-fine-tuned it for POS tagging, parsing and NER, with and without extra masked-LM training on raw text, and
-transliterated hard non-Latin-script languages into Latin script. Transliteration raised Uyghur NER from 34.7 to 55.2
-F1 but hurt Mingrelian, showing that the script strongly affects transfer.
+Winata et al.~\cite{winata2019synthetic} addressed the lack of English--Mandarin code-switched text for training
+language models. They used a pointer-generator network that copies words from machine-translated parallel sentences
+and learns when to switch, generating 270K synthetic sentences. Although pre-training on these lowered SEAME test
+perplexity from 65.71 to 59.74, perplexity at switch points stayed very high, and only one pair was studied.
 
-\textbf{Multitask learning and data.} Liu et al.~\cite{liu2019mtdnn} studied multitask learning for language
-understanding with MT-DNN. It shares BERT encoder layers across tasks and adds task-specific heads for
-classification, similarity regression and ranking, trained jointly. It raised the GLUE score to 82.7 (+2.2 over
-BERT), but all tasks are English and see the full input, unlike our prefix-only switch and duration heads.
-Xie et al.~\cite{xie2025switchlingua} introduced SwitchLingua, a code-switching dataset of 420K text samples across 12
-languages plus over 80 hours of recorded speech. The text was generated by LinguaMaster, a GPT-4o multi-agent loop
-constrained by syntactic switch-point rules and speaker metadata. It is the largest open code-switching resource in
-linguistic diversity, but all of its text is synthetic.
+\textbf{Language identification in code-switched text.} Solorio et al.~\cite{solorio2014overview} addressed identifying
+the language of each word in code-switched social-media text, through the first shared task on Spanish--English,
+Nepali--English, Mandarin--English and Modern Standard Arabic--dialectal Arabic. Seven teams submitted systems
+ranging from rule-based character n-gram methods to SVMs and CRFs. Although the best F-measure reached 97.7\% for
+Nepali--English, it was only 41.7\% on one Arabic test set, so closely related varieties were much harder.
+
+Molina et al.~\cite{molina2016overview} addressed the same problem in a second shared task, on Spanish--English and
+Modern Standard--Egyptian Arabic tweets. Nine teams took part, mostly with CRF sequence labelers; two used CNN or LSTM
+networks. Although the best token-level F-measure was 97.3\% for Spanish--English, it was only 87.6\% for the Arabic
+pair, so closely related languages remained harder.
+
+Aguilar et al.~\cite{aguilar2020lince} addressed evaluating code-switching models on one centralized benchmark across
+language pairs and tasks. They built LinCE from ten corpora over four pairs and four tasks (language ID, POS tagging,
+NER and sentiment) and reported BiLSTM, ELMo and multilingual BERT baselines. Although mBERT reached up to 98.5\%
+language-ID accuracy, it scored only 84.1\% on the Arabic pair, and every task labels complete sentences rather than
+predicting ahead.
+
+Khanuja et al.~\cite{khanuja2020gluecos} addressed evaluating NLP models on code-switched English--Hindi and
+English--Spanish text. They built GLUECoS with six tasks, from language ID to a new NLI task, and compared
+cross-lingual embeddings, mBERT, and mBERT further trained with masked-LM on synthetic code-switched text. Although
+the modified mBERT was best on most tasks, NLI reached only 63.1\%, little above chance, on only two pairs.
+
+\textbf{Multilingual encoders.} Devlin et al.~\cite{devlin2019bert} addressed pre-training language representations
+that transfer to many tasks with little task-specific design. They pre-trained BERT, a Transformer encoder, with
+masked language modeling and next-sentence prediction, then fine-tuned it with one extra output layer per task.
+Although it set new results on eleven tasks (GLUE 80.5), every token attends to both left and right context, so
+prefix-only prediction needs a causal mask.
+
+Pires et al.~\cite{pires2019multilingual} addressed how well multilingual BERT transfers across languages. They
+fine-tuned it for NER and POS tagging in one language, evaluated it zero-shot on others, and tested POS tagging on
+code-switched Hindi--English written in Devanagari and in romanized form. Although transfer worked best between
+typologically similar languages, accuracy fell from 86.6\% to 50.4\% when the Hindi was romanized, which motivates our
+separate romanized-Hindi language ID.
+
+Conneau et al.~\cite{conneau2020xlmr} addressed cross-lingual representation learning for many languages, including
+low-resource ones. They trained XLM-R, a masked language model, on 2.5\,TB of filtered CommonCrawl text in 100
+languages, including romanized Hindi. Although it beat mBERT by 14.6 points of average XNLI accuracy, adding languages
+dilutes per-language capacity, and like BERT it is bidirectional.
+
+Muller et al.~\cite{muller2021unseen} addressed how multilingual models handle languages absent from their
+pre-training. They fine-tuned mBERT for POS tagging, parsing and NER on 15 such languages, with and without extra
+masked-LM training on raw text, and transliterated hard non-Latin-script languages into Latin script. Although
+transliteration raised Uyghur NER from 34.7 to 55.2 F1, it hurt Mingrelian, so the script strongly affects transfer.
+
+\textbf{Multitask learning and data.} Liu et al.~\cite{liu2019mtdnn} addressed improving language understanding with
+multitask learning. They proposed MT-DNN, which shares BERT encoder layers across tasks and adds task-specific heads
+for classification, similarity regression and ranking, trained jointly. Although it raised the GLUE score to 82.7
+(+2.2 over BERT), all its tasks are English and see the full input, unlike our prefix-only switch and duration heads.
+
+Xie et al.~\cite{xie2025switchlingua} addressed the lack of large, multilingual code-switching data. They built
+SwitchLingua with LinguaMaster, a GPT-4o multi-agent loop constrained by syntactic switch-point rules and speaker
+metadata, producing 420K text samples across 12 languages plus over 80 hours of recorded speech. Although it is the
+largest open code-switching resource in linguistic diversity, all of its text is synthetic.
 
 \section{Dataset}
 \textbf{Source.} We use the text part of SwitchLingua (SwitchLingua\_text on Hugging Face): 15 pairs,
