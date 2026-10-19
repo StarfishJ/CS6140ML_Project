@@ -112,8 +112,8 @@ tex=r'''\documentclass[sigconf]{acmart}
 We study anticipatory code-switching: after reading the prefix $x_1,\dots,x_t$, predict whether the next word
 $x_{t+1}$ switches language and how long the new-language span will last. This report describes the data pipeline
 we built for all 15 language pairs of SwitchLingua --- language-specific word segmentation, word-level language
-identification, switch and duration labels, a deduplicated 70/10/20 split, and a streaming loader whose inputs never
-include $x_{t+1}$ --- and our first baselines. A naive model that only sees the current word reaches a mean
+identification, switch and duration labels, a deduplicated 70/10/20 split, and a streaming loader whose inputs
+exclude $x_{t+1}$ (up to a small segmentation effect we measure) --- and our first baselines. A naive model that only sees the current word reaches a mean
 switch-class F1 of '''+f3(mean_w)+r''' across pairs (SD '''+f3(sd_w)+r'''), roughly twice a model that only knows the
 current word's language. Code: \url{'''+GITHUB_URL+r'''}.
 \end{abstract}
@@ -134,59 +134,72 @@ different pairs? We measure it with the same pipeline and metric on every pair, 
 (XLM-R or mBERT) with a causal attention mask and two heads, one for $y_{sw}$ and one for $y_{dur}$.
 
 \section{Background and Related Work}
-\textbf{Code-switch prediction.} Solorio and Liu~\cite{solorio2008learning} first framed the prediction of
-code-switching points in Spanish--English conversation as a learning task. They trained Naive Bayes and VFI
-classifiers on lexical, part-of-speech and language-ID features of the preceding words. Results were encouraging, but
-the feature-based approach was tested on one small corpus and one pair.
-Ostapenko et al.~\cite{ostapenko2022speaker} predicted code-switching points in English--Spanish dialogue. They
-truncated each input at a candidate point so the model sees only the prefix, and added sociolinguistic speaker
-features as prompts. Speaker information improved accuracy, but evaluation covered one pair and no switch duration.
-Winata et al.~\cite{winata2019synthetic} built code-switched language models for English--Mandarin. A pointer-generator
-network learned where to switch between aligned parallel sentences and produced synthetic code-switched training data.
-Language-model perplexity improved, but switching was modeled implicitly through the language model, on one pair.
+\textbf{Code-switch prediction.} Solorio and Liu~\cite{solorio2008learning} were the first to treat predicting
+Spanish--English code-switch points as a learning task. They trained Naive Bayes and VFI classifiers on language-ID,
+part-of-speech and lexical features of the one or two words before each boundary, in a 40-minute conversation of
+about 8k words. Naive Bayes reached only 0.28 F1, and the study covered one small corpus and one pair.
+Ostapenko et al.~\cite{ostapenko2022speaker} predicted whether the next word switches language in English--Spanish
+dialogues of the Bangor Miami corpus. They gave XLM-R only the utterance prefix and prior turns, and prepended prompts
+describing each speaker's age, origin and language preferences. The prompts raised test accuracy from 72.0\% to
+79.7\%, but the study covers one pair and a small dataset, and does not model switch duration.
+Winata et al.~\cite{winata2019synthetic} addressed the scarcity of English--Mandarin code-switched data for language
+modeling. A pointer-generator network learned to copy words from machine-translated parallel sentences and to decide
+when to switch, generating 270K synthetic sentences. Pre-training on them lowered SEAME test perplexity from 65.71 to
+59.74, but perplexity at switch points stayed very high, on a single pair.
 
 \textbf{Language identification in code-switched text.} Solorio et al.~\cite{solorio2014overview} ran the first shared
 task on word-level language identification in code-switched social-media text, for Spanish--English, Nepali--English,
-Mandarin--English and Modern Standard Arabic--dialectal Arabic. Participants used CRFs and other supervised
-sequence models with character and lexical features. Accuracy was high for some pairs but much lower for the closely
-related Arabic varieties.
-Molina et al.~\cite{molina2016overview} organized the second edition for Spanish--English and Modern Standard
-Arabic--Egyptian Arabic tweets. Systems ranged from CRFs to neural networks with word and character features.
-Spanish--English was again much easier than the Arabic pair, showing that closely related languages remain hard.
-Aguilar et al.~\cite{aguilar2020lince} released LinCE, a benchmark of ten corpora over four pairs (including
-Hindi--English and Spanish--English) and four tasks (language ID, POS tagging, NER, sentiment). They reported
-baselines from BiLSTMs to multilingual BERT. Language ID is close to solved with full-sentence context, but all tasks
-look at text after it is written.
-Khanuja et al.~\cite{khanuja2020gluecos} proposed GLUECoS, a code-switched NLP benchmark for English--Hindi and
-English--Spanish covering language ID, POS, NER, sentiment, question answering and NLI. They fine-tuned mBERT and also
-pre-trained it on synthetic code-switched text. The extra pre-training helped, but the benchmark covers only two
-pairs and no anticipatory task.
+Mandarin--English and Modern Standard Arabic--dialectal Arabic. Seven teams submitted systems ranging from rule-based
+character n-gram methods to SVMs and CRFs. The best F-measure was 97.7\% for Nepali--English but only 41.7\% on one
+Arabic test set, so closely related varieties were much harder.
+Molina et al.~\cite{molina2016overview} organized the second edition, for Spanish--English and Modern Standard
+Arabic--Egyptian Arabic tweets. Nine teams took part, mostly with CRF sequence labelers, and two entries used CNN or
+LSTM networks. The best token-level F-measure was 97.3\% for Spanish--English but 87.6\% for the Arabic pair: closely
+related languages remained harder.
+Aguilar et al.~\cite{aguilar2020lince} built LinCE, a code-switching benchmark of ten corpora over four pairs
+(including Hindi--English and Spanish--English) and four tasks: language ID, POS tagging, NER and sentiment. They
+re-split the corpora and reported BiLSTM, ELMo and multilingual BERT baselines. mBERT was best on every task, with
+language-ID accuracy up to 98.5\%, but only 84.1\% for the Arabic pair, and all tasks label complete sentences.
+Khanuja et al.~\cite{khanuja2020gluecos} proposed GLUECoS, a code-switching benchmark for English--Hindi and
+English--Spanish with six tasks, from language ID to a new NLI task. They compared cross-lingual embeddings with
+mBERT, and with mBERT given further masked-LM training on synthetic code-switched text. Modified mBERT was best on most
+tasks, yet NLI reached only 63.1\%, little above chance, and only two pairs are covered.
 
-\textbf{Multilingual encoders.} Devlin et al.~\cite{devlin2019bert} introduced BERT, a Transformer encoder pre-trained
-with masked language modeling and next-sentence prediction. Fine-tuning it set new results on eleven tasks including
-GLUE and SQuAD. Its attention is bidirectional, so prefix-only prediction requires a causal mask.
-Pires et al.~\cite{pires2019multilingual} probed multilingual BERT. Zero-shot transfer experiments showed that mBERT
-transfers across languages and can process code-switched and transliterated input. Transfer drops for typologically
-distant pairs and for transliterated text, which motivates our per-pair variance analysis.
-Conneau et al.~\cite{conneau2020xlmr} trained XLM-R, a masked language model on 2.5\,TB of filtered CommonCrawl text in
-100 languages. It outperformed mBERT on cross-lingual classification, QA and NER, especially for low-resource
-languages. It is our strongest candidate backbone, although, like BERT, it is bidirectional.
-Muller et al.~\cite{muller2021unseen} studied how multilingual models handle languages unseen in pre-training. They
-found large differences between languages and that transliterating a language into the script of a related
-high-resource language helps. This supports treating romanized Hindi with a model trained on romanized text.
+\textbf{Multilingual encoders.} Devlin et al.~\cite{devlin2019bert} addressed pre-training deep language
+representations that transfer to many tasks. They pre-trained BERT, a Transformer encoder, with masked language
+modeling and next-sentence prediction, then fine-tuned it with one extra output layer per task. It set new results on
+eleven tasks (GLUE 80.5), but every token attends to both left and right context, so prefix-only prediction needs a
+causal mask.
+Pires et al.~\cite{pires2019multilingual} examined how well multilingual BERT transfers across languages. They
+fine-tuned it for NER and POS tagging in one language, evaluated zero-shot on others, and tested POS tagging on
+code-switched Hindi--English in Devanagari and in romanized form. Transfer was best between typologically similar
+languages, and accuracy fell from 86.6\% to 50.4\% when the Hindi was romanized, which motivates our separate
+romanized-Hindi language ID.
+Conneau et al.~\cite{conneau2020xlmr} studied cross-lingual representation learning at scale. They trained XLM-R, a
+masked language model, on 2.5\,TB of filtered CommonCrawl text in 100 languages, including romanized Hindi. It beat
+mBERT by 14.6 points of average XNLI accuracy, most on low-resource languages, though adding languages dilutes
+per-language capacity and, like BERT, it is bidirectional.
+Muller et al.~\cite{muller2021unseen} studied how mBERT handles 15 languages absent from its pre-training. They
+fine-tuned it for POS tagging, parsing and NER, with and without extra masked-LM training on raw text, and
+transliterated hard non-Latin-script languages into Latin script. Transliteration raised Uyghur NER from 34.7 to 55.2
+F1 but hurt Mingrelian, showing that the script strongly affects transfer.
 
-\textbf{Multitask learning and data.} Liu et al.~\cite{liu2019mtdnn} proposed MT-DNN, which shares a BERT encoder across
-tasks with task-specific output layers trained jointly. It improved GLUE results, but all tasks were sentence-level
-classification over fully observed input, unlike our prefix-only switch and duration heads.
-Xie et al.~\cite{xie2025switchlingua} introduced SwitchLingua, generated with the LinguaMaster multi-agent framework
-under linguistic constraints, with 420K text samples across 12 languages and an audio part. It is synthetic, but it is
-the only resource with the breadth of pairs a universality study needs.
+\textbf{Multitask learning and data.} Liu et al.~\cite{liu2019mtdnn} studied multitask learning for language
+understanding with MT-DNN. It shares BERT encoder layers across tasks and adds task-specific heads for
+classification, similarity regression and ranking, trained jointly. It raised the GLUE score to 82.7 (+2.2 over
+BERT), but all tasks are English and see the full input, unlike our prefix-only switch and duration heads.
+Xie et al.~\cite{xie2025switchlingua} introduced SwitchLingua, a code-switching dataset of 420K text samples across 12
+languages plus over 80 hours of recorded speech. The text was generated by LinguaMaster, a GPT-4o multi-agent loop
+constrained by syntactic switch-point rules and speaker metadata. It is the largest open code-switching resource in
+linguistic diversity, but all of its text is synthetic.
 
 \section{Dataset}
 \textbf{Source.} We use the text part of SwitchLingua (SwitchLingua\_text on Hugging Face): 15 pairs,
 '''+f'{tot["rows"]:,}'+r''' rows, 14 X--English pairs plus German--French. Each row is a generated conversation whose
 \texttt{data\_generation\_result} field is a list of utterances, with metadata such as topic and switch type. There are
-no word-level language labels, so we derive them.
+no word-level language labels, so we derive them. We use all 15 pairs rather than a subset because universality is
+best tested on the widest spread: they cover 7 scripts, 7 language families, SVO, SOV and VSO word order, and one
+pair (German--French) without English.
 
 \textbf{Segmentation and word language ID.} Word units and language ID depend on the writing system
 (Table~\ref{tab:data}). Space-separated languages are split on whitespace and punctuation, keeping combining marks
@@ -200,13 +213,15 @@ fully romanized and are tagged with \texttt{muril-hinglish-lid}, a MuRIL model f
 For the eight Latin-script pairs, a word gets the language in which it is clearly more frequent according to
 wordfreq~\cite{speer2022wordfreq} (Zipf difference $\geq$1.0, or 0.5 toward English for Malay and Filipino, whose
 lists contain many English loans), or the language indicated by letters only one side uses. Ambiguous words take the
-language of the nearest decided words on both sides. Numbers inherit the previous word's language. On spot-checked
+language of the nearest decided words on both sides when these agree, and otherwise the language in which the
+word is more frequent. Numbers inherit the previous word's language. On spot-checked
 validation samples (about 400--500 words per Latin-script pair), word-level agreement with our own reading was about
 98--99\%; these are weak labels, not gold annotations.
 
 \textbf{Labels and split.} From the word language IDs we compute $y_{sw}$ and $y_{dur}$ for every position whose two
-words have a known language (unknown words are '''+f'{min(unks):.1f}--{max(unks):.1f}'+r'''\% of words, mostly utterance-initial numbers). Exact duplicate
-rows are removed, rows that share any utterance are grouped, and groups are split 70/10/20 into train, validation and
+words have a known language (unknown words are '''+f'{min(unks):.1f}--{max(unks):.1f}'+r'''\% of words, mostly ambiguous Filipino and Malay words at a switch that neither word list contains, and
+Japanese numbers before any known word). Exact duplicate
+rows are removed, rows that share any normalized utterance of at least three words are grouped, and groups are split 70/10/20 into train, validation and
 test with a fixed seed per pair; '''+str(cross)+r''' utterances appear in more than one split. Cantonese--English
 ('''+f'{sum(can.values()):,}'+r''' rows, '''+f'{can.get("D",0):,}'+r''' exact duplicates) is downsampled after splitting
 to '''+f'{can["T"]+can["V"]+can["E"]:,}'+r''' rows, the median size of the other pairs.
@@ -214,7 +229,8 @@ to '''+f'{can["T"]+can["V"]+can["E"]:,}'+r''' rows, the median size of the other
 \textbf{Label example.} In the Korean--English utterance ``I want to | \ko{먹어요 맛있어요} | today'' (bars mark
 the language spans), the loader gives, at $x_t=$ \emph{to}, $y_{sw}=1$ because the next word is Korean and
 $y_{dur}=0$ because the Korean span has 2 words; at \emph{want}, $y_{sw}=0$ and $y_{dur}=-1$; at \ko{맛있어요},
-$y_{sw}=1$ and $y_{dur}=0$, since the English span ``today'' has 1 word.
+$y_{sw}=1$ and $y_{dur}=0$, since the English span ``today'' has 1 word. Spans are counted up to the end of the utterance; a switch whose new span reaches a word of
+unknown language also gets $y_{dur}=-1$ (at most '''+f'{100*max(v["duration_unresolved"]/(v["duration_unresolved"]+v["duration_labeled"]) for v in B["pair_results"].values()):.1f}'+r'''\% of switches in any pair).
 
 \textbf{Streaming loader and causal inputs.} \texttt{StreamingCSDataset} is a PyTorch \texttt{IterableDataset}: a
 generator reads one CSV row at a time and yields one example per word $t$ --- the window $x_{t-31},\dots,x_t$, the
@@ -223,15 +239,15 @@ The generator yields examples on demand rather than materializing all word-level
 
 \textbf{Causal constraint: status.} Labels may read the whole sentence, since they are the answers; inputs must not
 include $x_{t+1}$, in training or testing.
-\emph{Implemented:} the naive baselines read only $x_t$ (no punctuation after it, no earlier words); the text passed to
+\emph{Implemented:} the naive baselines read only $x_t$ and its language (no punctuation after $x_t$); the text passed to
 a tokenizer ends at $x_t$; and the input LID is computed from the prefix only (left context for Latin-script pairs, the
 Hinglish model run on each prefix for romanized Hindi).
 \emph{Verified:} a prefix-only consistency test re-runs segmentation and LID on the prefix alone for 40 validation
 utterances per pair. The LID input is identical in '''+str(len(lid_full))+r''' pairs ('''+names(lid_rest)+r''': '''+f'{100*lid_min:.1f}'+r'''\%)
 and the word $x_t$ in '''+str(len(word_full))+r''' pairs.
 \emph{Not yet implemented:} the transformer's causal attention mask (Update 2), and strictly prefix-only segmentation
-for '''+names(word_rest)+r'''.
-\emph{Known limitation:} those segmenters see the whole utterance, so in these pairs
+for Chinese, '''+names(word_rest)+r'''.
+\emph{Known limitation:} those segmenters see the whole utterance; in the test, Chinese words did not change, and in the other three pairs
 '''+f'{100*(1-word_min):.1f}'+r'''\% or fewer of the input words $x_t$ differ from what the prefix alone gives. The inputs
 are therefore not yet fully leak-free; the leak is small but not zero.
 
@@ -257,7 +273,7 @@ word positions per pair). Always stay never predicts a switch (F1 = 0 on every p
 at every word; its F1 depends only on the switch rate $p$, $2p/(1+p)$, and serves as the reference line. Current LID
 estimates $P(\text{switch}\mid\text{pair},\text{LID of }x_t)$ on train with add-one smoothing. The naive baseline
 estimates $P(\text{switch}\mid\text{pair}, x_t)$ for the word itself, shrunk toward its language's rate with five
-pseudo-counts. Both use only $x_t$ (no punctuation after it, no earlier words), and their thresholds are tuned on each
+pseudo-counts. Both use $x_t$ and its language, computed from the prefix (no punctuation after $x_t$), and their thresholds are tuned on each
 pair's validation split. Gain is naive F1 minus always-switch F1.
 
 \begin{table}[t]
@@ -318,7 +334,8 @@ subwords (English: '''+f'{100*en_mbert:.0f}'+r'''\%), and with XLM-R a piece cro
 at the word level, score each word at its last subword, and will tokenize word by word. Inputs exclude the
 punctuation after $x_t$: in SwitchLingua a sentence-final mark is followed by a switch
 '''+f'{100*p_after[0]:.0f}--{100*p_after[1]:.0f}'+r'''\% of the time and precedes '''+f'{100*share[0]:.0f}--{100*share[1]:.0f}'+r'''\%
-of all switches, so models that see it score much higher on these inter-sentential switches.
+of all switches, so a model that sees it can catch many inter-sentential switches from the mark alone, and scores
+with and without punctuation are not comparable.
 
 \section{Plan for Next}
 \begin{itemize}
@@ -328,7 +345,7 @@ prefix-by-prefix loader, which must give identical predictions.
 \item \textbf{Stronger baselines.} Previous plus current word, logistic regression on prefix features, a
 duration-majority baseline, and a variant that sees punctuation, reported separately.
 \item \textbf{Label quality.} A small hand-checked gold set per pair to measure word-LID and switch-boundary
-accuracy, and incremental segmentation of the prefix for Chinese, Japanese and Vietnamese.
+accuracy, and incremental segmentation of the prefix for Chinese, Cantonese, Japanese and Vietnamese.
 \item \textbf{Analysis.} Per-pair F1 bar chart and SD for each backbone, duration accuracy at true switches, and
 inter- versus intra-sentential switches using SwitchLingua's switch-type field; a streaming demo at the end.
 \end{itemize}

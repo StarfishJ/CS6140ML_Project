@@ -187,13 +187,16 @@
 \newblock
 
 
-\bibitem[Speer(2022)]%
+\bibitem[Speer(2023)]%
         {speer2022wordfreq}
 \bibfield{author}{\bibinfo{person}{Robyn Speer}.}
-  \bibinfo{year}{2022}\natexlab{}.
-\newblock \bibinfo{booktitle}{\emph{rspeer/wordfreq: v3.0}}.
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{wordfreq (version 3.1.1)}}.
 \newblock
-\href{https://doi.org/10.5281/zenodo.7199437}{doi:\nolinkurl{10.5281/zenodo.7199437}}
+\urldef\tempurl%
+\url{https://github.com/rspeer/wordfreq}
+\showURL{%
+\tempurl}
 
 
 \bibitem[Winata et~al\mbox{.}(2019)]%
@@ -212,12 +215,17 @@
 \bibitem[Xie et~al\mbox{.}(2025)]%
         {xie2025switchlingua}
 \bibfield{author}{\bibinfo{person}{Peng Xie}, \bibinfo{person}{Xingyuan Liu},
-  \bibinfo{person}{Tsz~Wai Chan}, {et~al\mbox{.}}}
+  \bibinfo{person}{Yequan Bie}, \bibinfo{person}{Tsz~Wai Chan},
+  \bibinfo{person}{Yangqiu Song}, \bibinfo{person}{Yang Wang},
+  \bibinfo{person}{Hao Chen}, {and} \bibinfo{person}{Kani Chen}.}
   \bibinfo{year}{2025}\natexlab{}.
-\newblock \bibinfo{title}{{SwitchLingua}: The First Large-Scale Multilingual
-  and Multi-Ethnic Code-Switching Dataset}.
+\newblock \showarticletitle{{SwitchLingua}: The First Large-Scale Multilingual
+  and Multi-Ethnic Code-Switching Dataset}. In
+  \bibinfo{booktitle}{\emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}}.
 \newblock
-\showeprint[arxiv]{2506.00087}
+\newblock
+\shownote{arXiv:2506.00087}.
 
 
 \end{thebibliography}
