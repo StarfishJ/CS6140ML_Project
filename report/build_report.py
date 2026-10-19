@@ -126,7 +126,9 @@ recognizes a switch after the mixed-language text has been observed. We instead 
 code-switching: at word $x_t$, using only the prefix $x_1,\dots,x_t$, predict (1) the switch label
 $y_{sw}(t)=1$ if $x_{t+1}$ is in a different language than $x_t$, and (2) the duration label $y_{dur}(t)$, the length
 of the new-language span starting at $x_{t+1}$: 0 for 1--2 words, 1 for 3--6, 2 for 7 or more, and $-1$ (ignored by
-the loss) when there is no switch. Real-time systems such as bilingual predictive keyboards, dialogue agents and
+the loss) when there is no switch. Here a token $x_t$ is a word, not a model subword: a whitespace word in
+space-separated languages and a segmenter word or bunsetsu in Chinese, Cantonese and Japanese (Section~3); labels
+are defined per word. Real-time systems such as bilingual predictive keyboards, dialogue agents and
 streaming speech recognition need to know a switch is coming before it happens.
 Our central question is \textbf{universality}: does one method anticipate switches equally well across typologically
 different pairs? We measure it with the same pipeline and metric on every pair, reporting per-pair switch-class F1
@@ -212,7 +214,9 @@ utterances containing Devanagari use script as well; the remaining '''+pct(rom_r
 fully romanized and are tagged with \texttt{muril-hinglish-lid}, a MuRIL model fine-tuned on LinCE Hindi--English.
 For the eight Latin-script pairs, a word gets the language in which it is clearly more frequent according to
 wordfreq~\cite{speer2022wordfreq} (Zipf difference $\geq$1.0, or 0.5 toward English for Malay and Filipino, whose
-lists contain many English loans), or the language indicated by letters only one side uses. Ambiguous words take the
+lists contain many English loans), or the language indicated by letters only one side uses. wordfreq combines frequencies from up to seven sources
+(Wikipedia, subtitles, news, Google Books, OSCAR web text, Twitter and Reddit); Malay, Filipino and Vietnamese
+have only three. Ambiguous words take the
 language of the nearest decided words on both sides when these agree, and otherwise the language in which the
 word is more frequent. Numbers inherit the previous word's language. On spot-checked
 validation samples (about 400--500 words per Latin-script pair), word-level agreement with our own reading was about
