@@ -98,6 +98,8 @@ tex=r'''\documentclass[sigconf]{acmart}
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \makeatletter\def\@affiliationfont{\small\normalfont}\makeatother
 \usepackage{booktabs}
+\usepackage{CJKutf8}
+\newcommand{\ko}[1]{\mbox{\begin{CJK}{UTF8}{mj}#1\end{CJK}}}
 \begin{document}
 \title{Predictive Multitask Learning for Streaming Code-Switching}
 \subtitle{CS6140 Machine Learning --- Project Update 1 Report}
@@ -209,16 +211,29 @@ test with a fixed seed per pair; '''+str(cross)+r''' utterances appear in more t
 ('''+f'{sum(can.values()):,}'+r''' rows, '''+f'{can.get("D",0):,}'+r''' exact duplicates) is downsampled after splitting
 to '''+f'{can["T"]+can["V"]+can["E"]:,}'+r''' rows, the median size of the other pairs.
 
+\textbf{Label example.} In the Korean--English utterance ``I want to | \ko{먹어요 맛있어요} | today'' (bars mark
+the language spans), the loader gives, at $x_t=$ \emph{to}, $y_{sw}=1$ because the next word is Korean and
+$y_{dur}=0$ because the Korean span has 2 words; at \emph{want}, $y_{sw}=0$ and $y_{dur}=-1$; at \ko{맛있어요},
+$y_{sw}=1$ and $y_{dur}=0$, since the English span ``today'' has 1 word.
+
 \textbf{Streaming loader and causal inputs.} \texttt{StreamingCSDataset} is a PyTorch \texttt{IterableDataset}: a
 generator reads one CSV row at a time and yields one example per word $t$ --- the window $x_{t-31},\dots,x_t$, the
 language of $x_t$, $y_{sw}$ and $y_{dur}$, and optionally XLM-R/mBERT subword ids scored at the last subword of $x_t$.
-Nothing is precomputed. The last word of an utterance yields no example and windows never cross utterances. Labels may
-read the whole sentence, since they are the answers, but inputs never include $x_{t+1}$ in training or testing: the
-text passed to a tokenizer ends at $x_t$, and the input LID is recomputed from the prefix only (left context for
-Latin-script pairs, the Hinglish model run on each prefix for romanized Hindi). Re-running the pipeline on the prefix
-alone for 40 validation utterances per pair gives an identical LID input in '''+str(len(lid_full))+r''' pairs
-('''+names(lid_rest)+r''': '''+f'{100*lid_min:.1f}'+r'''\%) and an identical word $x_t$ in '''+str(len(word_full))+r''' pairs;
-'''+names(word_rest)+r''' match at over '''+f'{int(100*word_min)}'+r'''\% because their segmenters look at following characters.
+The generator yields examples on demand rather than materializing all word-level training examples in memory. The last word of an utterance yields no example and windows never cross utterances.
+
+\textbf{Causal constraint: status.} Labels may read the whole sentence, since they are the answers; inputs must not
+include $x_{t+1}$, in training or testing.
+\emph{Implemented:} the naive baselines read only $x_t$ (no punctuation after it, no earlier words); the text passed to
+a tokenizer ends at $x_t$; and the input LID is computed from the prefix only (left context for Latin-script pairs, the
+Hinglish model run on each prefix for romanized Hindi).
+\emph{Verified:} a prefix-only consistency test re-runs segmentation and LID on the prefix alone for 40 validation
+utterances per pair. The LID input is identical in '''+str(len(lid_full))+r''' pairs ('''+names(lid_rest)+r''': '''+f'{100*lid_min:.1f}'+r'''\%)
+and the word $x_t$ in '''+str(len(word_full))+r''' pairs.
+\emph{Not yet implemented:} the transformer's causal attention mask (Update 2), and strictly prefix-only segmentation
+for '''+names(word_rest)+r'''.
+\emph{Known limitation:} those segmenters see the whole utterance, so in these pairs
+'''+f'{100*(1-word_min):.1f}'+r'''\% or fewer of the input words $x_t$ differ from what the prefix alone gives. The inputs
+are therefore not yet fully leak-free; the leak is small but not zero.
 
 \begin{table*}[t]
 \caption{The 15 SwitchLingua pairs after preprocessing. Positions are word positions with a label (all splits); S/M/L
