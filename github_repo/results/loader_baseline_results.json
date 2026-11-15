@@ -47,6 +47,52 @@
         "recall": 0.4807,
         "f1": 0.3807
       },
+      "punct_pair_threshold": 0.23,
+      "word_punct_reference": {
+        "n": 71171,
+        "positive": 6457,
+        "precision": 0.7063,
+        "recall": 0.4477,
+        "f1": 0.5481
+      },
+      "duration": {
+        "test_bin_share": [
+          0.4166,
+          0.2314,
+          0.352
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 6457,
+          "accuracy": 0.4166,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 6457,
+          "accuracy": 0.444,
+          "balanced_accuracy": 0.4135,
+          "recall_by_bin": [
+            0.8476,
+            0.3929,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 6457,
+          "accuracy": 0.4889,
+          "balanced_accuracy": 0.4648,
+          "recall_by_bin": [
+            0.6528,
+            0.3655,
+            0.3762
+          ]
+        }
+      },
       "switch_rate": 0.0907,
       "split_positions": {
         "train": 250253,
@@ -100,6 +146,52 @@
         "precision": 0.3372,
         "recall": 0.3948,
         "f1": 0.3637
+      },
+      "punct_pair_threshold": 0.18,
+      "word_punct_reference": {
+        "n": 109528,
+        "positive": 11277,
+        "precision": 0.4346,
+        "recall": 0.4339,
+        "f1": 0.4343
+      },
+      "duration": {
+        "test_bin_share": [
+          0.4543,
+          0.2948,
+          0.2509
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 11277,
+          "accuracy": 0.4543,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 11277,
+          "accuracy": 0.5036,
+          "balanced_accuracy": 0.4299,
+          "recall_by_bin": [
+            0.7738,
+            0.5158,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 11277,
+          "accuracy": 0.5447,
+          "balanced_accuracy": 0.4929,
+          "recall_by_bin": [
+            0.7595,
+            0.4391,
+            0.28
+          ]
+        }
       },
       "switch_rate": 0.103,
       "split_positions": {
@@ -155,6 +247,52 @@
         "recall": 0.435,
         "f1": 0.3687
       },
+      "punct_pair_threshold": 0.18,
+      "word_punct_reference": {
+        "n": 107987,
+        "positive": 7991,
+        "precision": 0.5896,
+        "recall": 0.5024,
+        "f1": 0.5425
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3425,
+          0.2137,
+          0.4437
+        ],
+        "majority_bin": 2,
+        "pair_majority": {
+          "n": 7991,
+          "accuracy": 0.4437,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "lid_majority": {
+          "n": 7991,
+          "accuracy": 0.4437,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "word": {
+          "n": 7991,
+          "accuracy": 0.5193,
+          "balanced_accuracy": 0.4475,
+          "recall_by_bin": [
+            0.4607,
+            0.1294,
+            0.7524
+          ]
+        }
+      },
       "switch_rate": 0.074,
       "split_positions": {
         "train": 373194,
@@ -208,6 +346,52 @@
         "precision": 0.3846,
         "recall": 0.6802,
         "f1": 0.4914
+      },
+      "punct_pair_threshold": 0.27,
+      "word_punct_reference": {
+        "n": 90432,
+        "positive": 16475,
+        "precision": 0.455,
+        "recall": 0.6363,
+        "f1": 0.5306
+      },
+      "duration": {
+        "test_bin_share": [
+          0.5612,
+          0.2613,
+          0.1775
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 16380,
+          "accuracy": 0.5612,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 16380,
+          "accuracy": 0.5612,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 16380,
+          "accuracy": 0.5715,
+          "balanced_accuracy": 0.4147,
+          "recall_by_bin": [
+            0.8819,
+            0.1472,
+            0.2149
+          ]
+        }
       },
       "switch_rate": 0.1822,
       "split_positions": {
@@ -263,6 +447,52 @@
         "recall": 0.4411,
         "f1": 0.3698
       },
+      "punct_pair_threshold": 0.2,
+      "word_punct_reference": {
+        "n": 81245,
+        "positive": 5734,
+        "precision": 0.7027,
+        "recall": 0.5356,
+        "f1": 0.6079
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3383,
+          0.239,
+          0.4227
+        ],
+        "majority_bin": 2,
+        "pair_majority": {
+          "n": 5728,
+          "accuracy": 0.4227,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "lid_majority": {
+          "n": 5728,
+          "accuracy": 0.4356,
+          "balanced_accuracy": 0.379,
+          "recall_by_bin": [
+            0.0,
+            0.2447,
+            0.8922
+          ]
+        },
+        "word": {
+          "n": 5728,
+          "accuracy": 0.449,
+          "balanced_accuracy": 0.4062,
+          "recall_by_bin": [
+            0.371,
+            0.1892,
+            0.6584
+          ]
+        }
+      },
       "switch_rate": 0.0706,
       "split_positions": {
         "train": 279113,
@@ -316,6 +546,52 @@
         "precision": 0.3786,
         "recall": 0.465,
         "f1": 0.4174
+      },
+      "punct_pair_threshold": 0.21,
+      "word_punct_reference": {
+        "n": 64552,
+        "positive": 4847,
+        "precision": 0.6452,
+        "recall": 0.5736,
+        "f1": 0.6073
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3534,
+          0.2341,
+          0.4126
+        ],
+        "majority_bin": 2,
+        "pair_majority": {
+          "n": 4845,
+          "accuracy": 0.4126,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "lid_majority": {
+          "n": 4845,
+          "accuracy": 0.4161,
+          "balanced_accuracy": 0.3704,
+          "recall_by_bin": [
+            0.0,
+            0.2372,
+            0.8739
+          ]
+        },
+        "word": {
+          "n": 4845,
+          "accuracy": 0.4516,
+          "balanced_accuracy": 0.4093,
+          "recall_by_bin": [
+            0.4352,
+            0.164,
+            0.6288
+          ]
+        }
       },
       "switch_rate": 0.0751,
       "split_positions": {
@@ -371,6 +647,52 @@
         "recall": 0.4386,
         "f1": 0.4173
       },
+      "punct_pair_threshold": 0.21,
+      "word_punct_reference": {
+        "n": 76357,
+        "positive": 5775,
+        "precision": 0.6849,
+        "recall": 0.5543,
+        "f1": 0.6127
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3077,
+          0.2671,
+          0.4252
+        ],
+        "majority_bin": 2,
+        "pair_majority": {
+          "n": 5765,
+          "accuracy": 0.4252,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "lid_majority": {
+          "n": 5765,
+          "accuracy": 0.4631,
+          "balanced_accuracy": 0.4006,
+          "recall_by_bin": [
+            0.0,
+            0.3026,
+            0.8992
+          ]
+        },
+        "word": {
+          "n": 5765,
+          "accuracy": 0.4742,
+          "balanced_accuracy": 0.4312,
+          "recall_by_bin": [
+            0.3123,
+            0.2474,
+            0.734
+          ]
+        }
+      },
       "switch_rate": 0.0756,
       "split_positions": {
         "train": 263621,
@@ -424,6 +746,52 @@
         "precision": 0.5382,
         "recall": 0.7418,
         "f1": 0.6238
+      },
+      "punct_pair_threshold": 0.31,
+      "word_punct_reference": {
+        "n": 89414,
+        "positive": 23092,
+        "precision": 0.5804,
+        "recall": 0.7388,
+        "f1": 0.6501
+      },
+      "duration": {
+        "test_bin_share": [
+          0.6652,
+          0.2137,
+          0.1212
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 23092,
+          "accuracy": 0.6652,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 23092,
+          "accuracy": 0.6652,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 23092,
+          "accuracy": 0.6776,
+          "balanced_accuracy": 0.455,
+          "recall_by_bin": [
+            0.9253,
+            0.0953,
+            0.3445
+          ]
+        }
       },
       "switch_rate": 0.2583,
       "split_positions": {
@@ -479,6 +847,52 @@
         "recall": 0.4414,
         "f1": 0.3472
       },
+      "punct_pair_threshold": 0.2,
+      "word_punct_reference": {
+        "n": 80254,
+        "positive": 5714,
+        "precision": 0.6646,
+        "recall": 0.4872,
+        "f1": 0.5623
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3461,
+          0.2327,
+          0.4211
+        ],
+        "majority_bin": 2,
+        "pair_majority": {
+          "n": 5706,
+          "accuracy": 0.4211,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "lid_majority": {
+          "n": 5706,
+          "accuracy": 0.4292,
+          "balanced_accuracy": 0.3823,
+          "recall_by_bin": [
+            0.0,
+            0.2854,
+            0.8614
+          ]
+        },
+        "word": {
+          "n": 5706,
+          "accuracy": 0.4541,
+          "balanced_accuracy": 0.4139,
+          "recall_by_bin": [
+            0.3489,
+            0.2267,
+            0.6663
+          ]
+        }
+      },
       "switch_rate": 0.0712,
       "split_positions": {
         "train": 283126,
@@ -532,6 +946,52 @@
         "precision": 0.675,
         "recall": 0.4282,
         "f1": 0.524
+      },
+      "punct_pair_threshold": 0.26,
+      "word_punct_reference": {
+        "n": 72723,
+        "positive": 7706,
+        "precision": 0.7505,
+        "recall": 0.3868,
+        "f1": 0.5105
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3833,
+          0.2144,
+          0.4023
+        ],
+        "majority_bin": 2,
+        "pair_majority": {
+          "n": 7706,
+          "accuracy": 0.4023,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "lid_majority": {
+          "n": 7706,
+          "accuracy": 0.4848,
+          "balanced_accuracy": 0.485,
+          "recall_by_bin": [
+            0.0,
+            0.5351,
+            0.92
+          ]
+        },
+        "word": {
+          "n": 7706,
+          "accuracy": 0.568,
+          "balanced_accuracy": 0.5532,
+          "recall_by_bin": [
+            0.3223,
+            0.4976,
+            0.8397
+          ]
+        }
       },
       "switch_rate": 0.106,
       "split_positions": {
@@ -587,6 +1047,52 @@
         "recall": 0.5683,
         "f1": 0.6749
       },
+      "punct_pair_threshold": 0.25,
+      "word_punct_reference": {
+        "n": 71198,
+        "positive": 7645,
+        "precision": 0.8404,
+        "recall": 0.5585,
+        "f1": 0.6711
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3932,
+          0.2226,
+          0.3842
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 7645,
+          "accuracy": 0.3932,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 7645,
+          "accuracy": 0.451,
+          "balanced_accuracy": 0.4539,
+          "recall_by_bin": [
+            0.8669,
+            0.4947,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 7645,
+          "accuracy": 0.5432,
+          "balanced_accuracy": 0.5319,
+          "recall_by_bin": [
+            0.6324,
+            0.4677,
+            0.4957
+          ]
+        }
+      },
       "switch_rate": 0.1074,
       "split_positions": {
         "train": 242155,
@@ -640,6 +1146,52 @@
         "precision": 0.2744,
         "recall": 0.5272,
         "f1": 0.3609
+      },
+      "punct_pair_threshold": 0.25,
+      "word_punct_reference": {
+        "n": 83526,
+        "positive": 9909,
+        "precision": 0.5994,
+        "recall": 0.449,
+        "f1": 0.5134
+      },
+      "duration": {
+        "test_bin_share": [
+          0.4861,
+          0.2445,
+          0.2694
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 9873,
+          "accuracy": 0.4861,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 9873,
+          "accuracy": 0.4907,
+          "balanced_accuracy": 0.4231,
+          "recall_by_bin": [
+            0.7468,
+            0.5224,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 9873,
+          "accuracy": 0.5096,
+          "balanced_accuracy": 0.4475,
+          "recall_by_bin": [
+            0.7262,
+            0.3807,
+            0.2357
+          ]
+        }
       },
       "switch_rate": 0.1186,
       "split_positions": {
@@ -695,6 +1247,52 @@
         "recall": 0.4732,
         "f1": 0.3482
       },
+      "punct_pair_threshold": 0.11,
+      "word_punct_reference": {
+        "n": 68795,
+        "positive": 6410,
+        "precision": 0.3314,
+        "recall": 0.681,
+        "f1": 0.4458
+      },
+      "duration": {
+        "test_bin_share": [
+          0.4076,
+          0.2641,
+          0.3282
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 6410,
+          "accuracy": 0.4076,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 6410,
+          "accuracy": 0.4676,
+          "balanced_accuracy": 0.4317,
+          "recall_by_bin": [
+            0.8741,
+            0.4211,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 6410,
+          "accuracy": 0.4725,
+          "balanced_accuracy": 0.4507,
+          "recall_by_bin": [
+            0.6873,
+            0.4028,
+            0.2619
+          ]
+        }
+      },
       "switch_rate": 0.0932,
       "split_positions": {
         "train": 247837,
@@ -748,6 +1346,52 @@
         "precision": 0.2815,
         "recall": 0.4748,
         "f1": 0.3535
+      },
+      "punct_pair_threshold": 0.2,
+      "word_punct_reference": {
+        "n": 83345,
+        "positive": 6421,
+        "precision": 0.6704,
+        "recall": 0.5071,
+        "f1": 0.5774
+      },
+      "duration": {
+        "test_bin_share": [
+          0.3512,
+          0.2506,
+          0.3983
+        ],
+        "majority_bin": 2,
+        "pair_majority": {
+          "n": 6413,
+          "accuracy": 0.3983,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "lid_majority": {
+          "n": 6413,
+          "accuracy": 0.3969,
+          "balanced_accuracy": 0.3715,
+          "recall_by_bin": [
+            0.0,
+            0.318,
+            0.7964
+          ]
+        },
+        "word": {
+          "n": 6413,
+          "accuracy": 0.4521,
+          "balanced_accuracy": 0.4343,
+          "recall_by_bin": [
+            0.4374,
+            0.313,
+            0.5525
+          ]
+        }
       },
       "switch_rate": 0.077,
       "split_positions": {
@@ -803,6 +1447,52 @@
         "recall": 0.4579,
         "f1": 0.3487
       },
+      "punct_pair_threshold": 0.23,
+      "word_punct_reference": {
+        "n": 91679,
+        "positive": 8441,
+        "precision": 0.6596,
+        "recall": 0.4964,
+        "f1": 0.5665
+      },
+      "duration": {
+        "test_bin_share": [
+          0.4346,
+          0.235,
+          0.3305
+        ],
+        "majority_bin": 0,
+        "pair_majority": {
+          "n": 8427,
+          "accuracy": 0.4346,
+          "balanced_accuracy": 0.3333,
+          "recall_by_bin": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "lid_majority": {
+          "n": 8427,
+          "accuracy": 0.4698,
+          "balanced_accuracy": 0.4279,
+          "recall_by_bin": [
+            0.8424,
+            0.4414,
+            0.0
+          ]
+        },
+        "word": {
+          "n": 8427,
+          "accuracy": 0.4922,
+          "balanced_accuracy": 0.4548,
+          "recall_by_bin": [
+            0.6898,
+            0.3192,
+            0.3555
+          ]
+        }
+      },
       "switch_rate": 0.0921,
       "split_positions": {
         "train": 323112,
@@ -821,6 +1511,25 @@
   "universality_sd_pair_tuned_f1_original4": 0.0835,
   "word_f1_mean": 0.426,
   "universality_sd_word_f1": 0.1017,
+  "word_punct_reference_f1_mean": 0.5587,
+  "universality_sd_word_punct_reference_f1": 0.0647,
+  "duration_summary": {
+    "pair_majority": {
+      "accuracy_mean": 0.4496,
+      "accuracy_sd": 0.0707,
+      "balanced_accuracy_mean": 0.3333
+    },
+    "lid_majority": {
+      "accuracy_mean": 0.4748,
+      "accuracy_sd": 0.0636,
+      "balanced_accuracy_mean": 0.3979
+    },
+    "word": {
+      "accuracy_mean": 0.5112,
+      "accuracy_sd": 0.0604,
+      "balanced_accuracy_mean": 0.4539
+    }
+  },
   "pair_tuned_by_lid_method": {
     "script": {
       "pairs": [
@@ -861,6 +1570,8 @@
     "Labels may read the whole sentence; the current-LID input feature uses only the prefix (left-context rule for Latin-script pairs, the model on each prefix for romanized Hindi)",
     "Chinese/Cantonese words come from jieba/PyCantonese; Japanese units are GiNZA bunsetsu (content word + particles/auxiliaries, comparable to Korean eojeol); Vietnamese syllables merged by pyvi",
     "Only exact duplicates removed; near-duplicate utterances may still cross splits",
-    "Thresholds selected on validation splits only (pooled, or per pair)"
+    "Thresholds selected on validation splits only (pooled, or per pair)",
+    "word_punct_reference sees the punctuation after x_t; it is reported only to size the punctuation effect and is not comparable with the other scores",
+    "Duration is scored only at true switches whose new span has a known length (y_dur >= 0)"
   ]
 }

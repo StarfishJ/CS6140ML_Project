@@ -188,7 +188,10 @@ def examples_from_text(text,lang,pair,method='script',window=32,tokenizer=None,m
         y=targets(ids,t)
         if y is None:continue
         s=max(0,t-window+1)
-        ex=dict(pair=pair,t=t,window=words[s:t+1],current_lid=feats[t],y_sw=y[0],y_dur=y[1])
+        # punct_after: the marks between x_t and x_{t+1} (e.g. ',' or '.'). Only the with-punctuation reference
+        # baseline reads it; it is never part of window or input_ids.
+        ex=dict(pair=pair,t=t,window=words[s:t+1],current_lid=feats[t],y_sw=y[0],y_dur=y[1],
+                punct_after=''.join(text[spans[t][1]:spans[t+1][0]].split()))
         if tokenizer is not None:
             # slice the raw text up to the end of x_t, so the tokenizer never sees x_{t+1}
             ex['input_ids'],ex['label_pos']=encode_context(text[spans[s][0]:spans[t][1]],tokenizer,max_len)

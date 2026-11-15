@@ -1,0 +1,365 @@
+{
+  "setup": {
+    "backbone": "xlm-roberta-base",
+    "causal_mode": "decoder",
+    "causal_check_max_abs_diff": 5.343821385395131e-07,
+    "train_rows_per_pair": 100000,
+    "eval_rows_per_pair": "all",
+    "weighting": "fixed",
+    "lam_sw": 1.0,
+    "lam_dur": 0.5,
+    "final_weights": [
+      1.0,
+      0.5
+    ],
+    "sw_pos_weight": 1.0,
+    "best_step": 34834,
+    "total_steps": 34834,
+    "seed": 42
+  },
+  "summary": {
+    "pairs": 15,
+    "f1_mean": 0.6277,
+    "universality_sd_f1": 0.085,
+    "gain_mean": 0.4387,
+    "universality_sd_gain": 0.0982,
+    "duration_accuracy_mean": 0.5916,
+    "duration_balanced_accuracy_mean": 0.5399
+  },
+  "test_losses": {
+    "l_sw": 0.18820229722356707,
+    "l_dur": 0.850071128217827
+  },
+  "pair_results": {
+    "Arabic–English": {
+      "positions": 71171,
+      "switch_rate": 0.0907,
+      "threshold": 0.32,
+      "switch": {
+        "precision": 0.5348,
+        "recall": 0.6505,
+        "f1": 0.587
+      },
+      "always_switch_f1": 0.1664,
+      "gain": 0.4206,
+      "duration": {
+        "n": 6457,
+        "accuracy": 0.5814,
+        "balanced_accuracy": 0.5474,
+        "recall_by_bin": [
+          0.6669,
+          0.3293,
+          0.6458
+        ]
+      }
+    },
+    "Hindi–English": {
+      "positions": 89414,
+      "switch_rate": 0.2583,
+      "threshold": 0.4,
+      "switch": {
+        "precision": 0.6799,
+        "recall": 0.782,
+        "f1": 0.7274
+      },
+      "always_switch_f1": 0.4105,
+      "gain": 0.3169,
+      "duration": {
+        "n": 23092,
+        "accuracy": 0.6939,
+        "balanced_accuracy": 0.5105,
+        "recall_by_bin": [
+          0.9186,
+          0.0934,
+          0.5197
+        ]
+      }
+    },
+    "Korean–English": {
+      "positions": 71198,
+      "switch_rate": 0.1074,
+      "threshold": 0.39,
+      "switch": {
+        "precision": 0.8679,
+        "recall": 0.7745,
+        "f1": 0.8186
+      },
+      "always_switch_f1": 0.1939,
+      "gain": 0.6247,
+      "duration": {
+        "n": 7645,
+        "accuracy": 0.608,
+        "balanced_accuracy": 0.5841,
+        "recall_by_bin": [
+          0.5971,
+          0.4371,
+          0.7181
+        ]
+      }
+    },
+    "Russian–English": {
+      "positions": 68795,
+      "switch_rate": 0.0932,
+      "threshold": 0.35,
+      "switch": {
+        "precision": 0.5686,
+        "recall": 0.6061,
+        "f1": 0.5868
+      },
+      "always_switch_f1": 0.1705,
+      "gain": 0.4163,
+      "duration": {
+        "n": 6410,
+        "accuracy": 0.581,
+        "balanced_accuracy": 0.5603,
+        "recall_by_bin": [
+          0.6824,
+          0.3898,
+          0.6088
+        ]
+      }
+    },
+    "Chinese–English": {
+      "positions": 107987,
+      "switch_rate": 0.074,
+      "threshold": 0.41,
+      "switch": {
+        "precision": 0.6322,
+        "recall": 0.6196,
+        "f1": 0.6258
+      },
+      "always_switch_f1": 0.1378,
+      "gain": 0.488,
+      "duration": {
+        "n": 7991,
+        "accuracy": 0.5932,
+        "balanced_accuracy": 0.5424,
+        "recall_by_bin": [
+          0.5817,
+          0.3044,
+          0.7411
+        ]
+      }
+    },
+    "Cantonese–English": {
+      "positions": 109528,
+      "switch_rate": 0.103,
+      "threshold": 0.31,
+      "switch": {
+        "precision": 0.5369,
+        "recall": 0.5486,
+        "f1": 0.5427
+      },
+      "always_switch_f1": 0.1867,
+      "gain": 0.356,
+      "duration": {
+        "n": 11277,
+        "accuracy": 0.6291,
+        "balanced_accuracy": 0.5992,
+        "recall_by_bin": [
+          0.7786,
+          0.4487,
+          0.5702
+        ]
+      }
+    },
+    "Japanese–English": {
+      "positions": 72723,
+      "switch_rate": 0.106,
+      "threshold": 0.46,
+      "switch": {
+        "precision": 0.8316,
+        "recall": 0.7294,
+        "f1": 0.7772
+      },
+      "always_switch_f1": 0.1916,
+      "gain": 0.5856,
+      "duration": {
+        "n": 7706,
+        "accuracy": 0.6642,
+        "balanced_accuracy": 0.6307,
+        "recall_by_bin": [
+          0.6625,
+          0.4492,
+          0.7803
+        ]
+      }
+    },
+    "Spanish–English": {
+      "positions": 83345,
+      "switch_rate": 0.077,
+      "threshold": 0.34,
+      "switch": {
+        "precision": 0.5334,
+        "recall": 0.6164,
+        "f1": 0.5719
+      },
+      "always_switch_f1": 0.1431,
+      "gain": 0.4288,
+      "duration": {
+        "n": 6413,
+        "accuracy": 0.562,
+        "balanced_accuracy": 0.5341,
+        "recall_by_bin": [
+          0.6363,
+          0.3124,
+          0.6535
+        ]
+      }
+    },
+    "French–English": {
+      "positions": 81245,
+      "switch_rate": 0.0706,
+      "threshold": 0.36,
+      "switch": {
+        "precision": 0.5672,
+        "recall": 0.6324,
+        "f1": 0.598
+      },
+      "always_switch_f1": 0.1318,
+      "gain": 0.4662,
+      "duration": {
+        "n": 5728,
+        "accuracy": 0.5559,
+        "balanced_accuracy": 0.5148,
+        "recall_by_bin": [
+          0.6135,
+          0.2462,
+          0.6848
+        ]
+      }
+    },
+    "German–English": {
+      "positions": 64552,
+      "switch_rate": 0.0751,
+      "threshold": 0.39,
+      "switch": {
+        "precision": 0.6455,
+        "recall": 0.7184,
+        "f1": 0.68
+      },
+      "always_switch_f1": 0.1397,
+      "gain": 0.5403,
+      "duration": {
+        "n": 4845,
+        "accuracy": 0.555,
+        "balanced_accuracy": 0.5075,
+        "recall_by_bin": [
+          0.6162,
+          0.2055,
+          0.7009
+        ]
+      }
+    },
+    "Italian–English": {
+      "positions": 80254,
+      "switch_rate": 0.0712,
+      "threshold": 0.34,
+      "switch": {
+        "precision": 0.5231,
+        "recall": 0.5982,
+        "f1": 0.5581
+      },
+      "always_switch_f1": 0.1329,
+      "gain": 0.4252,
+      "duration": {
+        "n": 5706,
+        "accuracy": 0.5542,
+        "balanced_accuracy": 0.5134,
+        "recall_by_bin": [
+          0.5944,
+          0.2651,
+          0.6808
+        ]
+      }
+    },
+    "Malay–English": {
+      "positions": 83526,
+      "switch_rate": 0.1186,
+      "threshold": 0.28,
+      "switch": {
+        "precision": 0.4855,
+        "recall": 0.5816,
+        "f1": 0.5292
+      },
+      "always_switch_f1": 0.2121,
+      "gain": 0.3171,
+      "duration": {
+        "n": 9873,
+        "accuracy": 0.5836,
+        "balanced_accuracy": 0.5297,
+        "recall_by_bin": [
+          0.7537,
+          0.3148,
+          0.5207
+        ]
+      }
+    },
+    "Filipino–English": {
+      "positions": 90432,
+      "switch_rate": 0.1822,
+      "threshold": 0.31,
+      "switch": {
+        "precision": 0.5043,
+        "recall": 0.6828,
+        "f1": 0.5801
+      },
+      "always_switch_f1": 0.3082,
+      "gain": 0.2719,
+      "duration": {
+        "n": 16380,
+        "accuracy": 0.6021,
+        "balanced_accuracy": 0.4834,
+        "recall_by_bin": [
+          0.8668,
+          0.1449,
+          0.4384
+        ]
+      }
+    },
+    "Vietnamese–English": {
+      "positions": 91679,
+      "switch_rate": 0.0921,
+      "threshold": 0.31,
+      "switch": {
+        "precision": 0.5252,
+        "recall": 0.6109,
+        "f1": 0.5648
+      },
+      "always_switch_f1": 0.1686,
+      "gain": 0.3962,
+      "duration": {
+        "n": 8427,
+        "accuracy": 0.5813,
+        "balanced_accuracy": 0.5405,
+        "recall_by_bin": [
+          0.7264,
+          0.3152,
+          0.5799
+        ]
+      }
+    },
+    "German–French": {
+      "positions": 76357,
+      "switch_rate": 0.0756,
+      "threshold": 0.38,
+      "switch": {
+        "precision": 0.6697,
+        "recall": 0.6648,
+        "f1": 0.6672
+      },
+      "always_switch_f1": 0.1406,
+      "gain": 0.5266,
+      "duration": {
+        "n": 5765,
+        "accuracy": 0.5284,
+        "balanced_accuracy": 0.5004,
+        "recall_by_bin": [
+          0.5744,
+          0.2688,
+          0.6581
+        ]
+      }
+    }
+  }
+}

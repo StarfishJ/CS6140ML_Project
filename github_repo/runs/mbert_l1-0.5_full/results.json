@@ -1,0 +1,365 @@
+{
+  "setup": {
+    "backbone": "bert-base-multilingual-cased",
+    "causal_mode": "decoder",
+    "causal_check_max_abs_diff": 1.3721371487918077e-06,
+    "train_rows_per_pair": 100000,
+    "eval_rows_per_pair": "all",
+    "weighting": "fixed",
+    "lam_sw": 1.0,
+    "lam_dur": 0.5,
+    "final_weights": [
+      1.0,
+      0.5
+    ],
+    "sw_pos_weight": 1.0,
+    "best_step": 34000,
+    "total_steps": 34834,
+    "seed": 42
+  },
+  "summary": {
+    "pairs": 15,
+    "f1_mean": 0.6137,
+    "universality_sd_f1": 0.0875,
+    "gain_mean": 0.4247,
+    "universality_sd_gain": 0.0982,
+    "duration_accuracy_mean": 0.5866,
+    "duration_balanced_accuracy_mean": 0.5349
+  },
+  "test_losses": {
+    "l_sw": 0.19426184080724393,
+    "l_dur": 0.8597098919273078
+  },
+  "pair_results": {
+    "Arabic–English": {
+      "positions": 71171,
+      "switch_rate": 0.0907,
+      "threshold": 0.33,
+      "switch": {
+        "precision": 0.5163,
+        "recall": 0.6263,
+        "f1": 0.566
+      },
+      "always_switch_f1": 0.1664,
+      "gain": 0.3996,
+      "duration": {
+        "n": 6457,
+        "accuracy": 0.58,
+        "balanced_accuracy": 0.5436,
+        "recall_by_bin": [
+          0.6825,
+          0.3159,
+          0.6322
+        ]
+      }
+    },
+    "Hindi–English": {
+      "positions": 89414,
+      "switch_rate": 0.2583,
+      "threshold": 0.4,
+      "switch": {
+        "precision": 0.6634,
+        "recall": 0.7889,
+        "f1": 0.7207
+      },
+      "always_switch_f1": 0.4105,
+      "gain": 0.3102,
+      "duration": {
+        "n": 23092,
+        "accuracy": 0.6907,
+        "balanced_accuracy": 0.5096,
+        "recall_by_bin": [
+          0.9139,
+          0.0896,
+          0.5254
+        ]
+      }
+    },
+    "Korean–English": {
+      "positions": 71198,
+      "switch_rate": 0.1074,
+      "threshold": 0.38,
+      "switch": {
+        "precision": 0.8468,
+        "recall": 0.778,
+        "f1": 0.811
+      },
+      "always_switch_f1": 0.1939,
+      "gain": 0.6171,
+      "duration": {
+        "n": 7645,
+        "accuracy": 0.6044,
+        "balanced_accuracy": 0.5806,
+        "recall_by_bin": [
+          0.6184,
+          0.4348,
+          0.6885
+        ]
+      }
+    },
+    "Russian–English": {
+      "positions": 68795,
+      "switch_rate": 0.0932,
+      "threshold": 0.37,
+      "switch": {
+        "precision": 0.5498,
+        "recall": 0.5861,
+        "f1": 0.5674
+      },
+      "always_switch_f1": 0.1705,
+      "gain": 0.3969,
+      "duration": {
+        "n": 6410,
+        "accuracy": 0.5741,
+        "balanced_accuracy": 0.5538,
+        "recall_by_bin": [
+          0.6816,
+          0.3952,
+          0.5846
+        ]
+      }
+    },
+    "Chinese–English": {
+      "positions": 107987,
+      "switch_rate": 0.074,
+      "threshold": 0.39,
+      "switch": {
+        "precision": 0.5881,
+        "recall": 0.6029,
+        "f1": 0.5954
+      },
+      "always_switch_f1": 0.1378,
+      "gain": 0.4576,
+      "duration": {
+        "n": 7991,
+        "accuracy": 0.593,
+        "balanced_accuracy": 0.5387,
+        "recall_by_bin": [
+          0.5999,
+          0.2758,
+          0.7406
+        ]
+      }
+    },
+    "Cantonese–English": {
+      "positions": 109528,
+      "switch_rate": 0.103,
+      "threshold": 0.3,
+      "switch": {
+        "precision": 0.5285,
+        "recall": 0.5261,
+        "f1": 0.5273
+      },
+      "always_switch_f1": 0.1867,
+      "gain": 0.3406,
+      "duration": {
+        "n": 11277,
+        "accuracy": 0.6248,
+        "balanced_accuracy": 0.5939,
+        "recall_by_bin": [
+          0.7804,
+          0.4346,
+          0.5666
+        ]
+      }
+    },
+    "Japanese–English": {
+      "positions": 72723,
+      "switch_rate": 0.106,
+      "threshold": 0.42,
+      "switch": {
+        "precision": 0.8094,
+        "recall": 0.7274,
+        "f1": 0.7662
+      },
+      "always_switch_f1": 0.1916,
+      "gain": 0.5746,
+      "duration": {
+        "n": 7706,
+        "accuracy": 0.6575,
+        "balanced_accuracy": 0.6226,
+        "recall_by_bin": [
+          0.651,
+          0.434,
+          0.7829
+        ]
+      }
+    },
+    "Spanish–English": {
+      "positions": 83345,
+      "switch_rate": 0.077,
+      "threshold": 0.31,
+      "switch": {
+        "precision": 0.4961,
+        "recall": 0.6398,
+        "f1": 0.5588
+      },
+      "always_switch_f1": 0.1431,
+      "gain": 0.4157,
+      "duration": {
+        "n": 6413,
+        "accuracy": 0.5576,
+        "balanced_accuracy": 0.5307,
+        "recall_by_bin": [
+          0.6252,
+          0.3186,
+          0.6484
+        ]
+      }
+    },
+    "French–English": {
+      "positions": 81245,
+      "switch_rate": 0.0706,
+      "threshold": 0.3,
+      "switch": {
+        "precision": 0.5069,
+        "recall": 0.6686,
+        "f1": 0.5767
+      },
+      "always_switch_f1": 0.1318,
+      "gain": 0.4449,
+      "duration": {
+        "n": 5728,
+        "accuracy": 0.5527,
+        "balanced_accuracy": 0.5126,
+        "recall_by_bin": [
+          0.5826,
+          0.2622,
+          0.6931
+        ]
+      }
+    },
+    "German–English": {
+      "positions": 64552,
+      "switch_rate": 0.0751,
+      "threshold": 0.38,
+      "switch": {
+        "precision": 0.6267,
+        "recall": 0.7256,
+        "f1": 0.6725
+      },
+      "always_switch_f1": 0.1397,
+      "gain": 0.5328,
+      "duration": {
+        "n": 4845,
+        "accuracy": 0.5449,
+        "balanced_accuracy": 0.4976,
+        "recall_by_bin": [
+          0.6197,
+          0.1922,
+          0.6808
+        ]
+      }
+    },
+    "Italian–English": {
+      "positions": 80254,
+      "switch_rate": 0.0712,
+      "threshold": 0.36,
+      "switch": {
+        "precision": 0.5037,
+        "recall": 0.6036,
+        "f1": 0.5491
+      },
+      "always_switch_f1": 0.1329,
+      "gain": 0.4162,
+      "duration": {
+        "n": 5706,
+        "accuracy": 0.5435,
+        "balanced_accuracy": 0.5016,
+        "recall_by_bin": [
+          0.5777,
+          0.2492,
+          0.6779
+        ]
+      }
+    },
+    "Malay–English": {
+      "positions": 83526,
+      "switch_rate": 0.1186,
+      "threshold": 0.27,
+      "switch": {
+        "precision": 0.4645,
+        "recall": 0.5815,
+        "f1": 0.5165
+      },
+      "always_switch_f1": 0.2121,
+      "gain": 0.3044,
+      "duration": {
+        "n": 9873,
+        "accuracy": 0.5765,
+        "balanced_accuracy": 0.5201,
+        "recall_by_bin": [
+          0.7539,
+          0.2875,
+          0.5188
+        ]
+      }
+    },
+    "Filipino–English": {
+      "positions": 90432,
+      "switch_rate": 0.1822,
+      "threshold": 0.29,
+      "switch": {
+        "precision": 0.4782,
+        "recall": 0.7132,
+        "f1": 0.5725
+      },
+      "always_switch_f1": 0.3082,
+      "gain": 0.2643,
+      "duration": {
+        "n": 16380,
+        "accuracy": 0.5995,
+        "balanced_accuracy": 0.4855,
+        "recall_by_bin": [
+          0.8524,
+          0.1661,
+          0.4381
+        ]
+      }
+    },
+    "Vietnamese–English": {
+      "positions": 91679,
+      "switch_rate": 0.0921,
+      "threshold": 0.35,
+      "switch": {
+        "precision": 0.5287,
+        "recall": 0.5733,
+        "f1": 0.5501
+      },
+      "always_switch_f1": 0.1686,
+      "gain": 0.3815,
+      "duration": {
+        "n": 8427,
+        "accuracy": 0.5743,
+        "balanced_accuracy": 0.5334,
+        "recall_by_bin": [
+          0.7078,
+          0.2949,
+          0.5975
+        ]
+      }
+    },
+    "German–French": {
+      "positions": 76357,
+      "switch_rate": 0.0756,
+      "threshold": 0.42,
+      "switch": {
+        "precision": 0.6628,
+        "recall": 0.6478,
+        "f1": 0.6552
+      },
+      "always_switch_f1": 0.1406,
+      "gain": 0.5146,
+      "duration": {
+        "n": 5765,
+        "accuracy": 0.5258,
+        "balanced_accuracy": 0.4994,
+        "recall_by_bin": [
+          0.5941,
+          0.2623,
+          0.6418
+        ]
+      }
+    }
+  }
+}
