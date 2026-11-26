@@ -2,12 +2,13 @@
     python test_phase2.py        (or: pytest test_phase2.py)
 Covers: causal mask (both modes) against prefix-only runs, with a bidirectional model as a negative control;
 ignore_index=-1 (loss and gradients unaffected by ignored positions); a batch with no switch (no NaN);
-gradients from each head reaching the shared backbone; label placement in collate.
+gradients from each head reaching the shared backbone; label and analysis-id placement in collate;
+scoring by switch type.
 """
 import torch
 from transformers import BertConfig
 
-from cs_model import DualHeadCS, MultitaskLoss, check_causal, collate
+from cs_model import PAIR_NAMES, DualHeadCS, MultitaskLoss, check_causal, collate
 
 
 def tiny_config():
@@ -105,6 +106,78 @@ def test_initial_loss_near_uniform():
     with torch.no_grad():
         _, parts = MultitaskLoss()(*model(b['input_ids'], b['attention_mask']), b['y_sw'], b['y_dur'])
     assert abs(parts['sw'] - 0.693) < 0.05 and abs(parts['dur'] - 1.099) < 0.05, parts
+
+
+
+def test_meta_follows_labels():
+    """row / utt / word / cs_type / next_sent sit exactly where y_sw is labelled; word counts words, not subwords."""
+    items = [dict(pair_id=0, input_ids=[101, 7, 8, 9, 10], label_pos=[2, 4], y_sw=[1, -1], y_dur=[0, -1], row=5,
+                  utt=1, cs_type=2, next_sent=[1, -1])]
+    b = collate(items, pad_id=0)
+    assert b['word'][0].tolist() == [-1, -1, 0, -1, 1] and b['row'][0, 2] == 5 and b['row'][0, 3] == -1
+    assert b['next_sent'][0].tolist() == [-1, -1, 1, -1, -1] and b['cs_type'][0, 4] == 2
+
+
+def test_score_types_by_boundary():
+    """Pair A: the inter-sentential switch is caught, the intra one missed -> recall 1 and 0, macro 0.5."""
+    from train_cs import score_types
+    rows = dict(pair=[0, 0, 0, 0], y_sw=[1, 1, 0, 0], y_dur=[2, 0, -1, -1], p_sw=[0.9, 0.1, 0.2, 0.8],
+                dur_pred=[2, 1, 0, 0], next_sent=[1, 0, 0, 0], cs_type=[1, 0, 0, 0])
+    st = score_types(rows, {PAIR_NAMES[0]: 0.5})['boundary']
+    inter, intra = st['groups']['inter-sentential'], st['groups']['intra-sentential']
+    assert inter['switch_recall'] == 1.0 and inter['duration_accuracy'] == 1.0 and inter['accuracy'] == 1.0
+    assert intra['switch_recall'] == 0.0 and intra['f1'] == 0.0 and intra['duration_accuracy'] == 0.0
+    assert intra['accuracy'] == 0.3333  # the miss is wrong, the stay at 0.2 is right, the stay at 0.8 is wrong
+    assert st['macro']['switch_recall'] == 0.5
+
+
+def test_duration_stats_never_invent_zeros():
+    """No true switch -> accuracy None (not 0); an absent bin is left out of the balanced accuracy."""
+    from train_cs import dur_stats, summarize
+    assert dur_stats([], [])['accuracy'] is None and dur_stats([], [])['balanced_accuracy'] is None
+    d = dur_stats([0, 0, 2], [0, 1, 2])  # bin 1 never occurs
+    assert d['recall_by_bin'] == [0.5, None, 1.0] and d['balanced_accuracy'] == 0.75 and d['bin_counts'] == [2, 0, 1]
+    res = {'A': dict(switch=dict(f1=0.5), gain=0.1, duration=dict(d, joint_hits=1, joint_hit_rate=round(1 / 3, 4))),
+           'B': dict(switch=dict(f1=0.3), gain=0.1, duration=dict(dur_stats([], []), joint_hits=0, joint_hit_rate=None))}
+    s = summarize(res)
+    assert s['duration_pairs'] == 1 and s['duration_skipped_pairs'] == ['B'] and s['duration_accuracy_mean'] == 0.6667
+
+
+def test_incremental_segmentation_ignores_the_future():
+    """streaming_demo.incremental_spans: words committed on a prefix do not change when more text arrives."""
+    from streaming_demo import incremental_spans
+    text = 'Ayer fui al mall con mi hermana and we bought shoes'
+    full = incremental_spans(text, 'Spanish–English')
+    for cut in (10, 25, 40):
+        part = incremental_spans(text[:cut], 'Spanish–English')
+        assert part[:-1] == full[:len(part) - 1]  # all but the (possibly unfinished) last word
+
+
+
+def test_word_input_units():
+    """streaming_demo --input words: '|' marks units and is removed, spaces stay; words never cross a unit."""
+    from streaming_demo import input_units, split_words
+    from streaming_loader import DEFAULT_DATA_DIR
+    text, units = input_units('我|今天|去了|shopping mall，|买了')
+    assert text == '我今天去了shopping mall，买了'
+    assert [text[a:b] for a, b in units] == ['我', '今天', '去了', 'shopping mall，', '买了']
+    _, spans, words, chunks = split_words('Ayer fui al mall, con mi', 'Spanish–English', DEFAULT_DATA_DIR, 'words')
+    assert words == ['Ayer', 'fui', 'al', 'mall', 'con', 'mi'] and chunks[4] == ', con'  # comma goes to next chunk
+
+
+
+def test_fast_threshold_equals_brute_force():
+    """best_threshold (sorted + bisection) picks exactly the threshold of the Update 2 brute force, including
+    ties (smallest wins), values on the grid, and all-positive / all-negative pairs."""
+    import random
+    from train_cs import GRID, best_threshold, f1_stats
+    rng = random.Random(0)
+    for trial in range(200):
+        n = rng.choice([1, 3, 50, 500])
+        y = [int(rng.random() < rng.choice([0.0, 0.1, 0.5, 1.0])) for _ in range(n)]
+        p = [rng.choice(GRID) if trial % 2 else round(rng.random(), 3) for _ in range(n)]
+        brute = max(GRID, key=lambda t: f1_stats(y, [int(x >= t) for x in p])['f1'])
+        assert best_threshold(y, p) == brute, (trial, y, p)
 
 
 if __name__ == '__main__':

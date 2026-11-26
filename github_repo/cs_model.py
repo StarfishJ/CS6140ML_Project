@@ -33,12 +33,18 @@ PAIR_NAMES = [p for _, p, _ in PAIRS.values()]
 PAIR_ID = {p: i for i, p in enumerate(PAIR_NAMES)}
 FILE_OF = {p: fn for fn, (_, p, _) in PAIRS.items()}
 DEFAULT_CACHE = Path(__file__).resolve().parent / 'data' / 'cache'  # under data/: git-ignored (contains text)
+CACHE_VERSION = 2  # v2 adds cs_type and next_sent; older caches lack them and are rebuilt
+# SwitchLingua's row-level cs_type (the switch type the generator was asked for); index = id used in batches
+CS_TYPES = ['Intrasentential', 'Intersentential', 'Extra-sentential / Tag switching']
+CS_TYPE_ID = {c: i for i, c in enumerate(CS_TYPES)}
 
 
 # ---------------------------------------------------------------- data
 def utterance_records(fn, split, data_dir=DEFAULT_DATA_DIR, rows=None, seed=0, cjk_seg='word', manifest=DEFAULT_MANIFEST):
-    """Records {pair, row, utt, chunks, y_sw, y_dur} for one pair file and split.
+    """Records {pair, row, utt, cs_type, chunks, y_sw, y_dur, next_sent} for one pair file and split.
     y_sw[i], y_dur[i] describe the word AFTER word i; -1 = no label (last word, unknown LID, or y_dur with no switch).
+    next_sent[i] = 1 if word i+1 starts a new sentence (a switch there is inter-sentential), 0 if it continues the
+    sentence (intra-sentential), -1 for the last word. cs_type = the row's cs_type field ('' if missing).
     rows: keep this many source rows of the split, sampled with a fixed seed (None = all rows)."""
     lang, pair, method = PAIRS[fn]
     codes = row_splits(fn, manifest)
@@ -56,20 +62,23 @@ def utterance_records(fn, split, data_dir=DEFAULT_DATA_DIR, rows=None, seed=0, c
                 if len(spans) < 2:
                     continue
                 words = [text[a:b] for a, b in spans]
-                ids = lid_sequence(words, lang, pair, method, data_dir, sentence_starts(text, spans))  # label LIDs
+                starts = sentence_starts(text, spans)
+                ids = lid_sequence(words, lang, pair, method, data_dir, starts)  # label LIDs
                 y_sw, y_dur = [-1] * len(words), [-1] * len(words)
                 for t in range(len(words) - 1):
                     y = targets(ids, t)
                     if y is not None:
                         y_sw[t], y_dur[t] = y
                 chunks = [text[(spans[i - 1][1] if i else 0):spans[i][1]] for i in range(len(spans))]
-                out.append(dict(pair=pair, row=row_id, utt=u_id, chunks=chunks, y_sw=y_sw, y_dur=y_dur))
+                next_sent = [int(starts[i + 1]) for i in range(len(words) - 1)] + [-1]
+                out.append(dict(pair=pair, row=row_id, utt=u_id, cs_type=row.get('cs_type', ''), chunks=chunks,
+                                y_sw=y_sw, y_dur=y_dur, next_sent=next_sent))
     return out
 
 
 def load_records(fn, split, data_dir=DEFAULT_DATA_DIR, rows=None, seed=0, cjk_seg='word', cache_dir=DEFAULT_CACHE):
     """utterance_records with an on-disk cache (segmentation and romanized-Hindi LID are slow)."""
-    cache = Path(cache_dir) / f'{Path(fn).stem}_{split}_{rows or "all"}_{seed}_{cjk_seg}.pkl'
+    cache = Path(cache_dir) / f'{Path(fn).stem}_{split}_{rows or "all"}_{seed}_{cjk_seg}_v{CACHE_VERSION}.pkl'
     if cache.exists():
         return pickle.loads(cache.read_bytes())
     recs = utterance_records(fn, split, data_dir, rows, seed, cjk_seg)
@@ -111,18 +120,24 @@ class WordEncoder:
             pos.append(len(ids) - 1)
         n = len(pos)
         return dict(pair_id=PAIR_ID[rec['pair']], input_ids=ids, label_pos=pos, y_sw=rec['y_sw'][:n],
-                    y_dur=rec['y_dur'][:n])
+                    y_dur=rec['y_dur'][:n], row=rec.get('row', -1), utt=rec.get('utt', -1),
+                    cs_type=CS_TYPE_ID.get(rec.get('cs_type'), -1), next_sent=rec.get('next_sent', [-1] * n)[:n])
+
+
+META = ('row', 'utt', 'word', 'cs_type', 'next_sent')  # analysis only, never seen by the model
 
 
 def collate(batch, pad_id):
     """Right-padded tensors. y_sw / y_dur / pair are placed at each word's last subword; every other position
-    (non-final subwords, BOS, padding) is -1 and is ignored by the loss."""
+    (non-final subwords, BOS, padding) is -1 and is ignored by the loss. The META tensors (source row, utterance,
+    word index, cs_type id, next word starts a sentence) are placed the same way, for per-position analysis."""
     L, B = max(len(b['input_ids']) for b in batch), len(batch)
     ids = torch.full((B, L), pad_id, dtype=torch.long)
     att = torch.zeros((B, L), dtype=torch.long)
     y_sw = torch.full((B, L), -1, dtype=torch.long)
     y_dur = torch.full((B, L), -1, dtype=torch.long)
     pair = torch.full((B, L), -1, dtype=torch.long)
+    meta = {k: torch.full((B, L), -1, dtype=torch.long) for k in META}
     for i, b in enumerate(batch):
         n = len(b['input_ids'])
         ids[i, :n] = torch.tensor(b['input_ids'], dtype=torch.long)
@@ -131,7 +146,12 @@ def collate(batch, pad_id):
         y_sw[i, p] = torch.tensor(b['y_sw'], dtype=torch.long)
         y_dur[i, p] = torch.tensor(b['y_dur'], dtype=torch.long)
         pair[i, p] = b['pair_id']
-    return dict(input_ids=ids, attention_mask=att, y_sw=y_sw, y_dur=y_dur, pair=pair)
+        meta['row'][i, p] = b.get('row', -1)
+        meta['utt'][i, p] = b.get('utt', -1)
+        meta['word'][i, p] = torch.arange(len(p))
+        meta['cs_type'][i, p] = b.get('cs_type', -1)
+        meta['next_sent'][i, p] = torch.tensor(b.get('next_sent', [-1] * len(p)), dtype=torch.long)
+    return dict(input_ids=ids, attention_mask=att, y_sw=y_sw, y_dur=y_dur, pair=pair, **meta)
 
 
 # ---------------------------------------------------------------- model

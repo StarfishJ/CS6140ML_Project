@@ -1,0 +1,768 @@
+{
+  "backbone": "xlm-roberta-base",
+  "causal_mode": "decoder",
+  "run": null,
+  "compared": "hidden state h_t (relative)",
+  "tol": 0.0001,
+  "utts_per_pair": 200,
+  "pairs": {
+    "Arabic–English": {
+      "full": {
+        "swap": {
+          "positions": 2593,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.53e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2593,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.53e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 2593,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.53e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2593,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.53e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Hindi–English": {
+      "full": {
+        "swap": {
+          "positions": 3287,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.03e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3287,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.53e-07,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3287,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.03e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3287,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.53e-07,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Korean–English": {
+      "full": {
+        "swap": {
+          "positions": 2817,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.35e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2817,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.99e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 2817,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.35e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2817,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.99e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Russian–English": {
+      "full": {
+        "swap": {
+          "positions": 2765,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.53e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2765,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.18e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 2765,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.53e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2765,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.18e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Chinese–English": {
+      "full": {
+        "swap": {
+          "positions": 3376,
+          "token_changed": 7,
+          "pred_changed": 7,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 9.05e-06,
+          "token_changed_rate": 0.0021,
+          "pred_changed_rate": 0.0021,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3376,
+          "token_changed": 7,
+          "pred_changed": 7,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.47e-06,
+          "token_changed_rate": 0.0021,
+          "pred_changed_rate": 0.0021,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3376,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 9.05e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3376,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.47e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Cantonese–English": {
+      "full": {
+        "swap": {
+          "positions": 2550,
+          "token_changed": 16,
+          "pred_changed": 16,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.63e-06,
+          "token_changed_rate": 0.0063,
+          "pred_changed_rate": 0.0063,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2550,
+          "token_changed": 16,
+          "pred_changed": 16,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.63e-06,
+          "token_changed_rate": 0.0063,
+          "pred_changed_rate": 0.0063,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 2550,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.63e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2550,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.63e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Japanese–English": {
+      "full": {
+        "swap": {
+          "positions": 2772,
+          "token_changed": 12,
+          "pred_changed": 12,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.56e-06,
+          "token_changed_rate": 0.0043,
+          "pred_changed_rate": 0.0043,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2772,
+          "token_changed": 12,
+          "pred_changed": 12,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.51e-07,
+          "token_changed_rate": 0.0043,
+          "pred_changed_rate": 0.0043,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 2772,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.56e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2772,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.51e-07,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Spanish–English": {
+      "full": {
+        "swap": {
+          "positions": 3477,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.18e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3477,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 2.35e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3477,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.18e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3477,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 2.35e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "French–English": {
+      "full": {
+        "swap": {
+          "positions": 3397,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.75e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3397,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.75e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3397,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 4.75e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3397,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.75e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "German–English": {
+      "full": {
+        "swap": {
+          "positions": 3209,
+          "token_changed": 2,
+          "pred_changed": 2,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.48e-05,
+          "token_changed_rate": 0.0006,
+          "pred_changed_rate": 0.0006,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3209,
+          "token_changed": 2,
+          "pred_changed": 2,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.17e-06,
+          "token_changed_rate": 0.0006,
+          "pred_changed_rate": 0.0006,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3209,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.48e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3209,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.17e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Italian–English": {
+      "full": {
+        "swap": {
+          "positions": 3637,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.39e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3637,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.17e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3637,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.39e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3637,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.17e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Malay–English": {
+      "full": {
+        "swap": {
+          "positions": 3058,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.05e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3058,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 2.46e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3058,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.62e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3058,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 2.46e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Filipino–English": {
+      "full": {
+        "swap": {
+          "positions": 3403,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 2.42e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3403,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.65e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3403,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 2.42e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3403,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 5.65e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "Vietnamese–English": {
+      "full": {
+        "swap": {
+          "positions": 3444,
+          "token_changed": 29,
+          "pred_changed": 29,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.01e-05,
+          "token_changed_rate": 0.0084,
+          "pred_changed_rate": 0.0084,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3444,
+          "token_changed": 5,
+          "pred_changed": 5,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.91e-06,
+          "token_changed_rate": 0.0015,
+          "pred_changed_rate": 0.0015,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 3444,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3.01e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 3444,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.91e-06,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    },
+    "German–French": {
+      "full": {
+        "swap": {
+          "positions": 2991,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2991,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.35e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      },
+      "words": {
+        "swap": {
+          "positions": 2991,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 3e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "punct": {
+          "positions": 2991,
+          "token_changed": 0,
+          "pred_changed": 0,
+          "pred_changed_same_tokens": 0,
+          "max_diff_same_tokens": 1.35e-05,
+          "token_changed_rate": 0.0,
+          "pred_changed_rate": 0.0,
+          "pred_changed_same_tokens_rate": 0.0
+        },
+        "words_as_in_training": 1.0
+      }
+    }
+  },
+  "total": {
+    "full": {
+      "swap": {
+        "positions": 46776,
+        "token_changed": 66,
+        "pred_changed": 66,
+        "pred_changed_same_tokens": 0,
+        "token_changed_rate": 0.0014,
+        "pred_changed_rate": 0.0014
+      },
+      "punct": {
+        "positions": 46776,
+        "token_changed": 42,
+        "pred_changed": 42,
+        "pred_changed_same_tokens": 0,
+        "token_changed_rate": 0.0009,
+        "pred_changed_rate": 0.0009
+      }
+    },
+    "words": {
+      "swap": {
+        "positions": 46776,
+        "token_changed": 0,
+        "pred_changed": 0,
+        "pred_changed_same_tokens": 0,
+        "token_changed_rate": 0.0,
+        "pred_changed_rate": 0.0
+      },
+      "punct": {
+        "positions": 46776,
+        "token_changed": 0,
+        "pred_changed": 0,
+        "pred_changed_same_tokens": 0,
+        "token_changed_rate": 0.0,
+        "pred_changed_rate": 0.0
+      }
+    }
+  }
+}

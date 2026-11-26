@@ -20,6 +20,9 @@ experiments (Update 2), for all 15 language pairs of
 | `train_cs.py` | **Update 2.** Training and evaluation: causal check before training, validation every N steps, best checkpoint by mean validation F1, per-pair thresholds tuned on validation, test metrics per pair |
 | `test_phase2.py` | **Update 2.** Seven unit tests on a tiny random BERT (CPU, seconds): causal mask in both modes plus a bidirectional negative control, `ignore_index`, batch without switches, gradient flow from both heads, step-0 loss, label placement |
 | `plot_phase2.py` | **Update 2.** Per-pair F1 bar chart and convergence curves from `runs/` |
+| `streaming_demo.py` | **Final.** Streaming simulation: after each word the model (fed only x₁…xₜ) prints the Next-Token Switch Probability and the Anticipated Duration. Word boundaries (`--input`): `words` = given by the input (`\|` or spaces; default), `stream` = segment only the text seen so far, character by character, `full` = whole text as in training. `--verify` checks against one causal pass, `--labels` shows what actually followed |
+| `audit_leakage.py` | **Final.** End-to-end leakage audit from raw text to prediction: changes everything after xₜ (another utterance's tail, or a sentence end right after xₜ) and reports per pair how often the input tokens up to xₜ change and how often the prediction at xₜ changes, for training-style (whole text) and streaming segmentation. `--bidirectional` is the negative control |
+| `analyze_errors.py` | **Final.** Qualitative analysis from `preds_test.csv.gz`: hits, false alarms (at a sentence boundary / switch one or two words later / just after a switch / other) and misses (inter- vs intra-sentential, span length), with examples |
 | `split_manifest.json` | The split used for all results (one code per CSV row; no dataset text) |
 | `results/loader_stats.json` | Positions, switch rate and duration bins per pair and split |
 | `results/loader_baseline_results.json` | Baseline scores per pair |
@@ -111,6 +114,20 @@ Numbers inherit the previous word's language. Words that switch inside a hyphen 
 * Split: rows sharing a sentence are grouped before splitting; no sentence appears in two splits.
 * Remaining limitation: the Chinese, Cantonese, Japanese and Vietnamese segmenters see the whole utterance, which
   changes at most 0.8% of input words xₜ relative to segmenting the prefix alone.
+* **Final: end-to-end audit** (`audit_leakage.py --utts 200 --modes full words`, `results/leakage_audit.json`;
+  200 test utterances per pair, 46,776 positions). For every position, the text after xₜ is replaced (by another
+  utterance's tail, or by a sentence end right after xₜ) and the whole pipeline is rerun from raw text.
+  * The model never leaks: in no position did the prediction at xₜ change while the input tokens up to xₜ stayed
+    the same (a bidirectional encoder, `--bidirectional`, changes 96–100% of them).
+  * Training-style segmentation (whole utterance) lets the later text change the input up to xₜ at 0.14% of
+    positions (tail replaced) and 0.09% (sentence end inserted), always together with the prediction: Cantonese
+    0.63%, Japanese 0.43%, Chinese 0.21%, Vietnamese 0.84% / 0.15%, and German–English 0.06% (2 positions: a
+    hyphenated compound such as `nag-meeting` is split only if its two halves differ in language, which depends
+    on the half after the hyphen); 0 in the other ten pairs. This measures a different change from the 0.8%
+    above (later text replaced, not prefix vs. whole-utterance segmentation), so the two numbers are not
+    directly comparable.
+  * The demo's default input (`--input words`, words given by the input) gives 0 in all pairs, and its words
+    are the training words in 100% of cases when the input follows the training segmentation.
 
 ## Model (Update 2)
 
@@ -151,6 +168,46 @@ XLM-R is ahead of mBERT on all 15 pairs (+0.007 to +0.030). Every pair improves 
 Lowering the duration weight raises switch F1 while duration accuracy stays within 0.588–0.592; uncertainty
 weighting settles at a duration-to-switch weight ratio of about 0.26. The two seeds of a setting differ by at most
 0.001.
+
+### Final: experiments to run
+
+What `train_cs.py` adds for the Final:
+
+* **Switch types** (`switch_types` in `results.json`, tables in `results.md`). Main grouping, per position: xₜ₊₁
+  starts a new sentence → inter-sentential, otherwise intra-sentential; every labelled position belongs to a
+  group, switches and non-switches alike. Supplementary grouping: SwitchLingua's row-level `cs_type` (the type the
+  generator was asked for). Per group, mean over pairs at each pair's validation threshold: **switch recall**
+  (share of actual switches anticipated; the main "accuracy across switch types"), binary accuracy (TP+TN)/N
+  (dominated by non-switches, reported for completeness), F1, duration accuracy; macro = mean over the groups.
+* **Duration** is scored at true switches with a known span length. A pair without such a switch is skipped and
+  listed (`duration_skipped_pairs`), never counted as 0; `*_micro` pools all switches; balanced accuracy averages
+  only the bins that occur (bin counts are reported). **Joint hit rate** = share of true switches that are
+  anticipated *and* get the right length bin (what a live system delivers).
+* **Duration ablation.** `--lam-sw 0` trains the duration head alone and selects its checkpoint by validation
+  duration accuracy. `--dur-best` makes a multitask run keep a second checkpoint selected the same way
+  (`best_dur.pt` → `results_dur_best.json`), so both sides of the comparison use the same selection rule; the
+  main results and the demo still use `best.pt` (selected by switch F1).
+* `--save-preds` writes `preds_test.csv.gz` (ids and model outputs, no dataset text); `--eval-only` re-tests
+  `best.pt` (and `best_dur.pt` if present) without training; `--device auto|cuda|mps|cpu`.
+* Record caches are versioned (`*_v2.pkl`) and are rebuilt once.
+
+```bash
+F="--train-rows 100000 --eval-every 2000 --save-preds"
+python train_cs.py --backbone xlm-roberta-base             --lam-dur 0.5 --dur-best $F --out runs/xlmr_l1-0.5_final
+python train_cs.py --backbone bert-base-multilingual-cased --lam-dur 0.5           $F --out runs/mbert_l1-0.5_final
+python train_cs.py --backbone bert-base-multilingual-cased --lam-dur 0.5 --seed 43 $F --out runs/mbert_l1-0.5_final_s43
+python train_cs.py --backbone xlm-roberta-base   --lam-sw 0 --lam-dur 1             $F --out runs/xlmr_dur_only
+python train_cs.py --backbone xlm-roberta-base             --lam-dur 0             $F --out runs/xlmr_sw_only   # optional
+
+# an existing checkpoint can be re-scored instead of retrained:
+python train_cs.py --out runs/xlmr_l1-0.5_full --eval-only --save-preds
+
+python analyze_errors.py --run runs/xlmr_l1-0.5_final --examples 5 --examples-out data/examples_xlmr.txt
+python audit_leakage.py --utts 200 --modes full words --out results/leakage_audit.json   # shipped audit (no checkpoint)
+python audit_leakage.py --run runs/xlmr_l1-0.5_final --utts 30 --modes words --out results/leakage_audit_xlmr.json
+python streaming_demo.py --run runs/xlmr_l1-0.5_final --pair "Spanish–English" --labels --verify \
+    --text "Ayer fui al mall con mi hermana and we bought new shoes para la fiesta."
+```
 
 ### Update 1 baselines
 
