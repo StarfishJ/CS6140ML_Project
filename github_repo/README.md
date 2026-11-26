@@ -191,22 +191,68 @@ What `train_cs.py` adds for the Final:
   `best.pt` (and `best_dur.pt` if present) without training; `--device auto|cuda|mps|cpu`.
 * Record caches are versioned (`*_v2.pkl`) and are rebuilt once.
 
+#### Running the Final experiments (GPU, about 30 min each)
+
+Same environment, data (`data/SwitchLingua_text/`) and Hugging Face models as Update 2.
+
+**0. Before starting:** check whether `runs/mbert_l1-0.5_full/best.pt` (the Update 2 mBERT checkpoint) still
+exists; if it does, step 3 needs no training.
+
+**1. Runs, in order of priority**
+
 ```bash
 F="--train-rows 100000 --eval-every 2000 --save-preds"
-python train_cs.py --backbone xlm-roberta-base             --lam-dur 0.5 --dur-best $F --out runs/xlmr_l1-0.5_final
-python train_cs.py --backbone bert-base-multilingual-cased --lam-dur 0.5           $F --out runs/mbert_l1-0.5_final
+
+# 1. duration head alone (does multitask learning help duration?)
+python train_cs.py --backbone xlm-roberta-base --lam-sw 0 --lam-dur 1 $F --out runs/xlmr_dur_only
+
+# 2. main XLM-R model; --dur-best also keeps the checkpoint selected by duration accuracy, to compare with 1
+python train_cs.py --backbone xlm-roberta-base --lam-dur 0.5 --dur-best $F --out runs/xlmr_l1-0.5_final
+
+# 3. mBERT, seed 42
+#    if the Update 2 best.pt still exists: re-test it only (the Update 2 folder is left unchanged)
+mkdir -p runs/mbert_l1-0.5_final
+cp runs/mbert_l1-0.5_full/{args.json,results.json,log.jsonl} runs/mbert_l1-0.5_final/
+ln -s ../mbert_l1-0.5_full/best.pt runs/mbert_l1-0.5_final/best.pt
+python train_cs.py --out runs/mbert_l1-0.5_final --eval-only --save-preds
+#    otherwise train it:
+#    python train_cs.py --backbone bert-base-multilingual-cased --lam-dur 0.5 $F --out runs/mbert_l1-0.5_final
+
+# 4. mBERT, seed 43 (second seed, as for XLM-R)
 python train_cs.py --backbone bert-base-multilingual-cased --lam-dur 0.5 --seed 43 $F --out runs/mbert_l1-0.5_final_s43
-python train_cs.py --backbone xlm-roberta-base   --lam-sw 0 --lam-dur 1             $F --out runs/xlmr_dur_only
-python train_cs.py --backbone xlm-roberta-base             --lam-dur 0             $F --out runs/xlmr_sw_only   # optional
+```
 
-# an existing checkpoint can be re-scored instead of retrained:
-python train_cs.py --out runs/xlmr_l1-0.5_full --eval-only --save-preds
+Run 2 has to be trained (the duration-selected checkpoint is saved during training).
 
+**2. Check the first run (about 15 minutes in).** The record caches are rebuilt once (versioned file names), so
+the first run spends 10+ extra minutes loading data. Then in `runs/<name>/log.jsonl`:
+
+* `"event": "causal_check"` shows `"passed": true`;
+* `"event": "val", "step": 0`: `val_f1_mean` ≈ 0.19 (the always-switch level), `val_l_sw` ≈ 0.69, `val_l_dur` ≈ 1.10;
+* later `val` lines (every 2,000 steps): `val_f1_mean` rises.
+
+After run 2, `val_duration_accuracy` should exceed ≈ 0.42; staying there means the duration head only predicts
+the most frequent bin.
+
+**3. If something fails.** An error at the start: send the last lines of the output. An error in the final test
+evaluation: `best.pt` is already saved, so after the fix rerun with the same `--out` and `--eval-only
+--save-preds`; no retraining.
+
+**4. What to send back**
+
+* Commit to the `final-update` branch, for every `runs/<name>/`: `args.json`, `log.jsonl`, `results*.json`,
+  `results*.md`, `preds_test.csv.gz` (about 12 MB, ids and numbers only, no dataset text).
+* Do not commit `best.pt` / `best_dur.pt` (git-ignored), `data/`, or any file with dataset text.
+* Share `runs/xlmr_l1-0.5_final/best.pt` (about 1 GB) separately (e.g. a cloud drive): the demo needs it.
+
+#### Analysis after the runs
+
+```bash
 python analyze_errors.py --run runs/xlmr_l1-0.5_final --examples 5 --examples-out data/examples_xlmr.txt
-python audit_leakage.py --utts 200 --modes full words --out results/leakage_audit.json   # shipped audit (no checkpoint)
-python audit_leakage.py --run runs/xlmr_l1-0.5_final --utts 30 --modes words --out results/leakage_audit_xlmr.json
 python streaming_demo.py --run runs/xlmr_l1-0.5_final --pair "Spanish–English" --labels --verify \
     --text "Ayer fui al mall con mi hermana and we bought new shoes para la fiesta."
+python audit_leakage.py --run runs/xlmr_l1-0.5_final --utts 30 --modes words --out results/leakage_audit_xlmr.json
+python audit_leakage.py --utts 200 --modes full words --out results/leakage_audit.json   # shipped audit (no checkpoint)
 ```
 
 ### Update 1 baselines
